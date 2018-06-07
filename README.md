@@ -1,6 +1,5 @@
-# i18n helpers
-
-Provides components and functions to make i18n apps with ease.
+# React i18n routing
+> Provides components and functions to make i18n routing React apps with ease.
 
 ## Language strategies
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import {IntlProvider} from 'react-intl';
 import PropTypes from 'prop-types';
-import {LANGUAGE_CHANGE} from "../reducer";
-import {connect} from "react-redux";
+import {LANGUAGE_CHANGE} from './../reducer';
+import {connect} from 'react-redux';
 
 class BrowserIntlProvider extends React.Component {
   static propTypes = {

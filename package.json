@@ -1,0 +1,50 @@
+{
+  "name": "@foes/react-i18n-routing",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Provides components and functions to make i18n routing React apps with ease.",
+  "keywords": [
+    "i18n",
+    "react",
+    "routing"
+  ],
+  "authors": [
+    {
+      "name": "Beñat Espiña Diaz",
+      "email": "benatespina@gmail.com",
+      "homepage": "https://benatespina.com"
+    },
+    {
+      "name": "Gorka Laucirica Ibarra",
+      "email": "gorka.lauzirika@gmail.com"
+    }
+  ],
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FriendsOfECMAScript/ReactI18nRouting"
+  },
+  "bugs": {
+    "url": "https://github.com/FriendsOfECMAScript/ReactI18nRouting/issues"
+  },
+  "scripts": {
+    "test": "yarn test --env=jsdom",
+    "fixer-js": "node_modules/.bin/prettier 'server/**/*.js' 'src/**/*.js' --write --single-quote --no-bracket-spacing --trailing-comma all",
+    "fixer-css": "node_modules/.bin/stylelint -c .stylelintrc.js src/**/*.css --fix"
+  },
+  "devDependencies": {
+    "prettier": "^1.10.2",
+    "stylelint": "^9.0.0",
+    "stylelint-order": "^0.8.0",
+    "stylelint-selector-bem-pattern": "^2.0.0"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-intl": "2.x",
+    "react-redux": "5.x",
+    "prop-types": "15.x",
+    "react-router-dom": "4.x",
+    "react-router-named-routes": "0.x",
+    "lodash.flatmap": "4.x"
+  }
+}
