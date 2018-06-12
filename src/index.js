@@ -11,5 +11,5 @@ export {
   defaultUnPrefixed,
   subdomainBased,
   Reducer,
-  RenderTranslatedRoutes
+  RenderTranslatedRoutes,
 };

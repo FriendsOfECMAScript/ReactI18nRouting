@@ -19,7 +19,8 @@
       "email": "gorka.lauzirika@gmail.com"
     }
   ],
-  "main": "src/index.js",
+  "main": "dist/common/index.js",
+  "module": "dist/esm/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/FriendsOfECMAScript/ReactI18nRouting"
@@ -29,22 +30,68 @@
   },
   "scripts": {
     "test": "yarn test --env=jsdom",
-    "fixer-js": "node_modules/.bin/prettier 'server/**/*.js' 'src/**/*.js' --write --single-quote --no-bracket-spacing --trailing-comma all",
-    "fixer-css": "node_modules/.bin/stylelint -c .stylelintrc.js src/**/*.css --fix"
+    "prebuild": "node_modules/.bin/rimraf dist && node_modules/.bin/mkdirp dist",
+    "build": "yarn prebuild && yarn cs && yarn common-bundle && yarn esm-bundle",
+    "common-bundle": "node_modules/.bin/babel --copy-files --out-dir dist/common src",
+    "esm-bundle": "cp -R src dist/esm",
+    "cs": "node_modules/.bin/prettier 'tests/**/*.js' 'src/**/*.js' --write --single-quote --no-bracket-spacing --trailing-comma all"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "chrome": 60,
+            "firefox": 55,
+            "safari": 10
+          },
+          "modules": "commonjs",
+          "loose": true
+        }
+      ],
+      "minify"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread",
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "@babel/preset-react": "^7.0.0-beta.49",
+    "babel-preset-minify": "^0.5.0-alpha.a28b6b00"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.49",
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.49",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.49",
+    "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.49",
+    "mkdirp": "^0.5.1",
     "prettier": "^1.10.2",
+    "rimraf": "^2.6.2",
     "stylelint": "^9.0.0",
     "stylelint-order": "^0.8.0",
     "stylelint-selector-bem-pattern": "^2.0.0"
   },
   "peerDependencies": {
+    "lodash.flatmap": "4.x",
+    "prop-types": "15.x",
     "react": "16.x",
     "react-intl": "2.x",
     "react-redux": "5.x",
-    "prop-types": "15.x",
     "react-router-dom": "4.x",
-    "react-router-named-routes": "0.x",
-    "lodash.flatmap": "4.x"
+    "react-router-named-routes": "0.x"
   }
 }

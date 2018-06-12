@@ -1,7 +1,7 @@
-import {formatRoute} from "react-router-named-routes";
-import renderTranslatedRoutes from "../renderTranslatedRoutes";
+import {formatRoute} from 'react-router-named-routes';
+import renderTranslatedRoutes from '../renderTranslatedRoutes';
 
-const localeFromLocation = (subdomains, defaultLocale) => (location) => {
+const localeFromLocation = (subdomains, defaultLocale) => location => {
   let currentLocale = defaultLocale;
   Object.keys(subdomains).forEach(locale => {
     if (subdomains[locale] === subdomainFromHostname(location.hostname)) {
@@ -12,8 +12,14 @@ const localeFromLocation = (subdomains, defaultLocale) => (location) => {
   return currentLocale;
 };
 
-const formatIntlRoute = (routes, subdomain, domain) => (routeName, params = {}, locale = null) => {
-  const prefix = params.absolute ? hostnameForLocale(locale, subdomain, domain) : '';
+const formatIntlRoute = (routes, subdomain, domain) => (
+  routeName,
+  params = {},
+  locale = null,
+) => {
+  const prefix = params.absolute
+    ? hostnameForLocale(locale, subdomain, domain)
+    : '';
 
   if (typeof routes[routeName] === 'string') {
     return `${prefix}${formatRoute(routes[routeName], params)}`;
@@ -23,7 +29,8 @@ const formatIntlRoute = (routes, subdomain, domain) => (routeName, params = {}, 
 };
 
 const subdomainFromHostname = hostname => hostname.split('.')[0];
-const hostnameForLocale = (locale, subdomains, domain) => (`//${subdomains[locale]}.${domain}`);
+const hostnameForLocale = (locale, subdomains, domain) =>
+  `//${subdomains[locale]}.${domain}`;
 
 const pathFromRoute = (paths, locale, defaultLocale, currentLocale) => {
   if (locale !== currentLocale) {
@@ -40,5 +47,10 @@ const pathFromRoute = (paths, locale, defaultLocale, currentLocale) => {
 export default ({routes, locales, defaultLocale, subdomains, domain}) => ({
   localeFromLocation: localeFromLocation(subdomains, defaultLocale),
   formatIntlRoute: formatIntlRoute(routes, subdomains, domain),
-  renderRoutes: renderTranslatedRoutes(locales, defaultLocale, routes, pathFromRoute)
+  renderRoutes: renderTranslatedRoutes(
+    locales,
+    defaultLocale,
+    routes,
+    pathFromRoute,
+  ),
 });
