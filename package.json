@@ -1,6 +1,6 @@
 {
   "name": "@foes/react-i18n-routing",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "description": "Provides components and functions to make i18n routing React apps with ease.",
   "keywords": [
