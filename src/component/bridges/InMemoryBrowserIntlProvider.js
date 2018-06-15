@@ -5,12 +5,20 @@ import {setLocale} from './../../locale.js';
 
 class InMemoryBrowserIntlProvider extends React.Component {
   static propTypes = {
+    children: PropTypes.func.isRequired,
+    lang: PropTypes.string,
     localeFromPath: PropTypes.func.isRequired,
   };
 
   state = {
-    lang: 'es',
+    lang: null,
   };
+
+  componentDidMount() {
+    const {lang} = this.props;
+
+    this.setState({lang: lang});
+  }
 
   handleLocationChange = location => {
     const {localeFromPath} = this.props;

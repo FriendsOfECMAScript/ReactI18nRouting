@@ -5,6 +5,7 @@ import {setLocale} from './../../locale.js';
 
 class LocalStorageBrowserIntlProvider extends React.Component {
   static propTypes = {
+    children: PropTypes.func.isRequired,
     localeFromPath: PropTypes.func.isRequired,
   };
 
