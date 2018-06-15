@@ -58,13 +58,11 @@
       "minify"
     ],
     "env": {
-      "test": {
-        "plugins": [
-          "@babel/plugin-proposal-class-properties",
-          "@babel/plugin-proposal-object-rest-spread",
-          "@babel/plugin-transform-modules-commonjs"
-        ]
-      }
+      "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-transform-modules-commonjs"
+      ]
     }
   },
   "dependencies": {
@@ -90,12 +88,12 @@
     "stylelint-selector-bem-pattern": "^2.0.0"
   },
   "peerDependencies": {
-    "lodash.flatmap": "4.x",
-    "prop-types": "15.x",
-    "react": "16.x",
-    "react-intl": "2.x",
-    "react-redux": "5.x",
-    "react-router-dom": "4.x",
-    "react-router-named-routes": "0.x"
+    "lodash.flatmap": ">=4.x",
+    "prop-types": ">=15.x",
+    "react": ">=16.x",
+    "react-intl": ">=2.x",
+    "react-redux": ">=5.x",
+    "react-router-dom": ">=4.x",
+    "react-router-named-routes": ">=0.x"
   }
 }
