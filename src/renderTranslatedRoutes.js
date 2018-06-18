@@ -1,5 +1,6 @@
 import flatMap from 'lodash.flatmap';
 
+// eslint-disable-next-line max-params
 const getRouteConfig = (
   configRoute,
   locale,
@@ -15,6 +16,7 @@ const getRouteConfig = (
   };
 };
 
+// eslint-disable-next-line max-params
 const renderTranslatedRoutesForLocales = (
   configRoute,
   routes,
