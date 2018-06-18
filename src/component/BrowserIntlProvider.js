@@ -2,8 +2,6 @@ import React from 'react';
 import {IntlProvider} from 'react-intl';
 import PropTypes from 'prop-types';
 
-import LocaleContext from './LocaleContext.js';
-
 class BrowserIntlProvider extends React.Component {
   static propTypes = {
     children: PropTypes.node,
@@ -37,11 +35,9 @@ class BrowserIntlProvider extends React.Component {
     }
 
     return (
-      <LocaleContext.Provider value={{locale: lang}}>
-        <IntlProvider key={lang} locale={lang} messages={messages[lang]} {...rest}>
-          {children}
-        </IntlProvider>
-      </LocaleContext.Provider>
+      <IntlProvider key={lang} locale={lang} messages={messages[lang]} {...rest}>
+        {children}
+      </IntlProvider>
     );
   }
 }
