@@ -1,7 +1,7 @@
 import React from 'react';
 import subdomainBased from './../../src/languageStrategy/subdomainBased';
 
-const DummyComponent = () => <div / >;
+const DummyComponent = () => <div />;
 
 const languageStrategy = subdomainBased({
   locales: ['en', 'es', 'eu'],
