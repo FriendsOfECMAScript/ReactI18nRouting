@@ -1,7 +1,7 @@
 import React from 'react';
 import defaultUnprefixed from './../../src/languageStrategy/defaultUnprefixed';
 
-const DummyComponent = () => <div / >;
+const DummyComponent = () => <div />;
 
 const languageStrategy = defaultUnprefixed({
   locales: ['en', 'es', 'eu'],
