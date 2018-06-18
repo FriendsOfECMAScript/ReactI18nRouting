@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultUnprefixed from '../../languageStrategy/defaultUnprefixed';
+import defaultUnprefixed from './../../src/languageStrategy/defaultUnprefixed';
 
 const DummyComponent = () => <div />;
 
@@ -142,6 +142,82 @@ test('Generates valid react-router-config nested tree', () => {
           path: '/',
           component: DummyComponent,
           exact: true,
+        },
+      ],
+    },
+  ]);
+});
+
+test('Generates valid react-router-config deeply nested tree', () => {
+  expect(
+    languageStrategy.renderRoutes('en')([
+      {
+        path: '/',
+        component: DummyComponent,
+        routes: [
+          {
+            paths: {
+              en: '/product/:slug',
+              es: '/producto/:slug',
+              eu: '/produktua/:slug',
+            },
+            component: DummyComponent,
+            routes: [{
+              paths: {
+                en: '/product/:slug/edit',
+                es: '/producto/:slug/editar',
+                eu: '/produktua/:slug/aldatu',
+              },
+              component: DummyComponent,
+            }, {
+              paths: {
+                en: '/product/:slug/view',
+                es: '/producto/:slug/ver',
+                eu: '/produktua/:slug/ikusi',
+              },
+              component: DummyComponent,
+            }],
+          },
+        ],
+      },
+    ]),
+  ).toEqual([
+    {
+      path: '/',
+      component: DummyComponent,
+      routes: [
+        {
+          path: '/product/:slug',
+          component: DummyComponent,
+          routes: [{
+            path: '/product/:slug/edit',
+            component: DummyComponent,
+          }, {
+            path: '/product/:slug/view',
+            component: DummyComponent,
+          }],
+        },
+        {
+          path: '/es/producto/:slug',
+          component: DummyComponent,
+          routes: [{
+            path: '/es/producto/:slug/editar',
+            component: DummyComponent,
+          }, {
+            path: '/es/producto/:slug/ver',
+            component: DummyComponent,
+          }],
+        },
+        {
+          path: '/eu/produktua/:slug',
+          component: DummyComponent,
+          routes: [{
+            path: '/eu/produktua/:slug/aldatu',
+            component: DummyComponent,
+          }, {
+            path: '/eu/produktua/:slug/ikusi',
+            component: DummyComponent,
+          }],
         },
       ],
     },
