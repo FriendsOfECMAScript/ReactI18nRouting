@@ -11,7 +11,11 @@ const FormattedLink = ({name, params, intl, locale, ...rest}) => {
 
   return (
     <Link
-      to={intl.formats.formatIntlRoute(name, params, locale ? locale : intl.locale)}
+      to={intl.formats.formatIntlRoute(
+        name,
+        params,
+        locale ? locale : intl.locale,
+      )}
       {...rest}
     />
   );

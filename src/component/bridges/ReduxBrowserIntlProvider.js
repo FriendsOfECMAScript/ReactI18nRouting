@@ -12,7 +12,7 @@ class ReduxBrowserIntlProvider extends Component {
   };
 
   static contextTypes = {
-    store: PropTypes.object
+    store: PropTypes.object,
   };
 
   handleLocationChange = location => {
@@ -26,8 +26,8 @@ class ReduxBrowserIntlProvider extends Component {
     this.store.dispatch({
       type: LANGUAGE_CHANGE,
       payload: {
-        locale: lang
-      }
+        locale: lang,
+      },
     });
   };
 
@@ -37,10 +37,7 @@ class ReduxBrowserIntlProvider extends Component {
   }
 
   render() {
-    return this.props.children(
-      this.props.lang,
-      this.handleLocationChange
-    );
+    return this.props.children(this.props.lang, this.handleLocationChange);
   }
 }
 
@@ -58,10 +55,10 @@ export function i18nReducer(state = initialState, {type, payload} = {}) {
   return state;
 }
 
-export const LANGUAGE_CHANGE = "@@i18n/LANGUAGE_CHANGE";
+export const LANGUAGE_CHANGE = '@@i18n/LANGUAGE_CHANGE';
 
 const defaultSelector = state => state.i18n;
 
 export default connect((state, i18nStateSelector = defaultSelector) => ({
-  lang: i18nStateSelector(state).locale
+  lang: i18nStateSelector(state).locale,
 }))(ReduxBrowserIntlProvider);

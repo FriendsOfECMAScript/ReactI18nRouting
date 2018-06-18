@@ -35,7 +35,12 @@ class BrowserIntlProvider extends React.Component {
     }
 
     return (
-      <IntlProvider key={lang} locale={lang} messages={messages[lang]} {...rest}>
+      <IntlProvider
+        key={lang}
+        locale={lang}
+        messages={messages[lang]}
+        {...rest}
+      >
         {children}
       </IntlProvider>
     );

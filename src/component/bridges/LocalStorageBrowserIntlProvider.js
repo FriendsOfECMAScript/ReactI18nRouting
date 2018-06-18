@@ -10,16 +10,19 @@ class LocalStorageBrowserIntlProvider extends React.Component {
   };
 
   state = {
-    lang: localStorage.getItem('locale')
+    lang: localStorage.getItem('locale'),
   };
 
   handleLocationChange = location => {
     const {localeFromPath} = this.props;
 
-    localStorage.setItem('locale', localeFromPath({
-      ...location,
-      hostname: typeof window !== 'undefined' ? window.location.hostname : '',
-    }));
+    localStorage.setItem(
+      'locale',
+      localeFromPath({
+        ...location,
+        hostname: typeof window !== 'undefined' ? window.location.hostname : '',
+      }),
+    );
     const lang = localStorage.getItem('locale');
     setLocale(lang);
     this.setState({lang: lang});
