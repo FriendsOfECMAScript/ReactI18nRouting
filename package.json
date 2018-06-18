@@ -38,6 +38,7 @@
   },
   "files": [
     "dist",
+    "CHANGELOG.md",
     "README.md"
   ],
   "babel": {
