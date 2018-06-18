@@ -1,5 +1,50 @@
 import flatMap from 'lodash.flatmap';
 
+const getRouteConfig = (
+  configRoute,
+  locale,
+  pathFromRoute,
+  defaultLocale,
+  currentLocale,
+) => {
+  const {paths, ...configRouteRest} = configRoute;
+
+  return {
+    path: pathFromRoute(paths, locale, defaultLocale, currentLocale),
+    ...configRouteRest,
+  };
+};
+
+const renderTranslatedRoutesForLocales = (
+  configRoute,
+  routes,
+  locales,
+  pathFromRoute,
+  defaultLocale,
+  currentLocale,
+) => flatMap(
+  locales.map(locale => {
+    const routeConfig = getRouteConfig(
+      configRoute,
+      locale,
+      pathFromRoute,
+      defaultLocale,
+      currentLocale,
+    );
+
+    if (routeConfig.path === null) {
+      return [];
+    }
+
+    return renderTranslatedRoutes(
+      locales,
+      defaultLocale,
+      routes,
+      pathFromRoute,
+    )(currentLocale)([routeConfig], locale);
+  }),
+);
+
 // eslint-disable-next-line max-params
 const renderTranslatedRoutes = (
   locales,
@@ -9,40 +54,37 @@ const renderTranslatedRoutes = (
 ) => currentLocale => (config, iterationLocale) =>
   flatMap(
     config.map(configRoute => {
-      const {paths, ...configRouteRest} = configRoute;
+      const {paths} = configRoute;
 
       if (paths) {
-        const
-          getRouteConfig = localeKey => ({
-            path: pathFromRoute(paths, localeKey, defaultLocale, currentLocale),
-            ...configRouteRest,
-          }),
-          renderTranslatedRoutesForLocales = pathLocales =>
-            flatMap(
-              pathLocales.map(key => {
-                const routeConfig = getRouteConfig(key);
-
-                if (routeConfig.path === null) {
-                  return [];
-                }
-
-                return renderTranslatedRoutes(
-                  locales,
-                  defaultLocale,
-                  routes,
-                  pathFromRoute,
-                )(currentLocale)([routeConfig], key);
-              }),
-            );
-
         if (typeof paths === 'string') {
-          return renderTranslatedRoutesForLocales(locales);
+          return renderTranslatedRoutesForLocales(
+            configRoute,
+            routes,
+            locales,
+            pathFromRoute,
+            defaultLocale,
+            currentLocale,
+          );
         }
 
         if (iterationLocale) {
-          configRoute = getRouteConfig(iterationLocale);
+          configRoute = getRouteConfig(
+            configRoute,
+            iterationLocale,
+            pathFromRoute,
+            defaultLocale,
+            currentLocale,
+          );
         } else {
-          return renderTranslatedRoutesForLocales(Object.keys(paths));
+          return renderTranslatedRoutesForLocales(
+            configRoute,
+            routes,
+            Object.keys(paths),
+            pathFromRoute,
+            defaultLocale,
+            currentLocale,
+          );
         }
       }
 
