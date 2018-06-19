@@ -6,6 +6,8 @@
   "keywords": [
     "i18n",
     "react",
+    "react-router",
+    "react-intl",
     "routing"
   ],
   "authors": [
@@ -17,6 +19,10 @@
     {
       "name": "Gorka Laucirica Ibarra",
       "email": "gorka.lauzirika@gmail.com"
+    },
+    {
+      "name": "Mikel Tuesta Sanchez",
+      "email": "mikeltuesta@gmail.com"
     }
   ],
   "main": "dist/common/index.js",
@@ -29,15 +35,16 @@
     "url": "https://github.com/FriendsOfECMAScript/ReactI18nRouting/issues"
   },
   "scripts": {
-    "test": "jest --env=jsdom",
+    "test": "node_modules/.bin/npm-install-peers && node_modules/.bin/jest --env=jsdom",
     "prebuild": "node_modules/.bin/rimraf dist && node_modules/.bin/mkdirp dist",
-    "build": "yarn prebuild && yarn cs && yarn common-bundle && yarn esm-bundle",
+    "build": "npm run prebuild && npm run cs && npm run common-bundle && npm run esm-bundle",
     "common-bundle": "node_modules/.bin/babel --copy-files --out-dir dist/common src",
     "esm-bundle": "cp -R src dist/esm",
     "cs": "node_modules/.bin/prettier 'tests/**/*.js' 'src/**/*.js' --write --single-quote --no-bracket-spacing --trailing-comma all"
   },
   "files": [
     "dist",
+    "CHANGELOG.md",
     "README.md"
   ],
   "babel": {
@@ -58,6 +65,20 @@
       "minify"
     ],
     "env": {
+      "development": {
+        "plugins": [
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread",
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      },
+      "production": {
+        "plugins": [
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread",
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      },
       "test": {
         "plugins": [
           "@babel/plugin-proposal-class-properties",
@@ -82,20 +103,18 @@
     "babel-jest": "^23.0.1",
     "jest": "^23.1.0",
     "mkdirp": "^0.5.1",
+    "npm-install-peers": "^1.2.1",
     "prettier": "^1.10.2",
     "regenerator-runtime": "^0.11.1",
-    "rimraf": "^2.6.2",
-    "stylelint": "^9.0.0",
-    "stylelint-order": "^0.8.0",
-    "stylelint-selector-bem-pattern": "^2.0.0"
+    "rimraf": "^2.6.2"
   },
   "peerDependencies": {
-    "lodash.flatmap": "4.x",
-    "prop-types": "15.x",
-    "react": "16.x",
-    "react-intl": "2.x",
-    "react-redux": "5.x",
-    "react-router-dom": "4.x",
-    "react-router-named-routes": "0.x"
+    "lodash.flatmap": ">=4.x",
+    "prop-types": ">=15.x",
+    "react": ">=16.x",
+    "react-intl": ">=2.x",
+    "react-redux": ">=5.x",
+    "react-router-dom": ">=4.x",
+    "react-router-named-routes": ">=0.x"
   }
 }
