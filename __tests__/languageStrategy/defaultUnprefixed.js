@@ -165,40 +165,46 @@ test('Generates valid react-router-config deeply nested tree', () => {
             },
             component: DummyComponent,
             exact: false,
-            routes: [{
-              paths: {
-                en: '/product/:slug/edit',
-                es: '/producto/:slug/editar',
-                eu: '/produktua/:slug/aldatu',
-              },
-              component: DummyComponent,
-              exact: true,
-            }, {
-              paths: {
-                en: '/product/:slug/view',
-                es: '/producto/:slug/ver',
-                eu: '/produktua/:slug/ikusi',
-              },
-              component: DummyComponent,
-              exact: true,
-            }, {
-              paths: {
-                en: '/product/:slug/comments/:comment',
-                es: '/producto/:slug/comentarios/:comment',
-                eu: '/produktua/:slug/iruzkinak/:comment',
-              },
-              component: DummyComponent,
-              exact: false,
-              routes: [{
+            routes: [
+              {
                 paths: {
-                  en: '/product/:slug/comments/:comment/edit',
-                  es: '/producto/:slug/comentarios/:comment/editar',
-                  eu: '/produktua/:slug/iruzkinak/:comment/aldatu',
+                  en: '/product/:slug/edit',
+                  es: '/producto/:slug/editar',
+                  eu: '/produktua/:slug/aldatu',
                 },
                 component: DummyComponent,
                 exact: true,
-              }],
-            }],
+              },
+              {
+                paths: {
+                  en: '/product/:slug/view',
+                  es: '/producto/:slug/ver',
+                  eu: '/produktua/:slug/ikusi',
+                },
+                component: DummyComponent,
+                exact: true,
+              },
+              {
+                paths: {
+                  en: '/product/:slug/comments/:comment',
+                  es: '/producto/:slug/comentarios/:comment',
+                  eu: '/produktua/:slug/iruzkinak/:comment',
+                },
+                component: DummyComponent,
+                exact: false,
+                routes: [
+                  {
+                    paths: {
+                      en: '/product/:slug/comments/:comment/edit',
+                      es: '/producto/:slug/comentarios/:comment/editar',
+                      eu: '/produktua/:slug/iruzkinak/:comment/aldatu',
+                    },
+                    component: DummyComponent,
+                    exact: true,
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
@@ -213,70 +219,88 @@ test('Generates valid react-router-config deeply nested tree', () => {
           path: '/product/:slug',
           component: DummyComponent,
           exact: false,
-          routes: [{
-            path: '/product/:slug/edit',
-            component: DummyComponent,
-            exact: true,
-          }, {
-            path: '/product/:slug/view',
-            component: DummyComponent,
-            exact: true,
-          }, {
-            path: '/product/:slug/comments/:comment',
-            component: DummyComponent,
-            exact: false,
-            routes: [{
-              path: '/product/:slug/comments/:comment/edit',
+          routes: [
+            {
+              path: '/product/:slug/edit',
               component: DummyComponent,
               exact: true,
-            }],
-          }],
+            },
+            {
+              path: '/product/:slug/view',
+              component: DummyComponent,
+              exact: true,
+            },
+            {
+              path: '/product/:slug/comments/:comment',
+              component: DummyComponent,
+              exact: false,
+              routes: [
+                {
+                  path: '/product/:slug/comments/:comment/edit',
+                  component: DummyComponent,
+                  exact: true,
+                },
+              ],
+            },
+          ],
         },
         {
           path: '/es/producto/:slug',
           component: DummyComponent,
           exact: false,
-          routes: [{
-            path: '/es/producto/:slug/editar',
-            component: DummyComponent,
-            exact: true,
-          }, {
-            path: '/es/producto/:slug/ver',
-            component: DummyComponent,
-            exact: true,
-          }, {
-            path: '/es/producto/:slug/comentarios/:comment',
-            component: DummyComponent,
-            exact: false,
-            routes: [{
-              path: '/es/producto/:slug/comentarios/:comment/editar',
+          routes: [
+            {
+              path: '/es/producto/:slug/editar',
               component: DummyComponent,
               exact: true,
-            }],
-          }],
+            },
+            {
+              path: '/es/producto/:slug/ver',
+              component: DummyComponent,
+              exact: true,
+            },
+            {
+              path: '/es/producto/:slug/comentarios/:comment',
+              component: DummyComponent,
+              exact: false,
+              routes: [
+                {
+                  path: '/es/producto/:slug/comentarios/:comment/editar',
+                  component: DummyComponent,
+                  exact: true,
+                },
+              ],
+            },
+          ],
         },
         {
           path: '/eu/produktua/:slug',
           component: DummyComponent,
           exact: false,
-          routes: [{
-            path: '/eu/produktua/:slug/aldatu',
-            component: DummyComponent,
-            exact: true,
-          }, {
-            path: '/eu/produktua/:slug/ikusi',
-            component: DummyComponent,
-            exact: true,
-          }, {
-            path: '/eu/produktua/:slug/iruzkinak/:comment',
-            component: DummyComponent,
-            exact: false,
-            routes: [{
-              path: '/eu/produktua/:slug/iruzkinak/:comment/aldatu',
+          routes: [
+            {
+              path: '/eu/produktua/:slug/aldatu',
               component: DummyComponent,
               exact: true,
-            }],
-          }],
+            },
+            {
+              path: '/eu/produktua/:slug/ikusi',
+              component: DummyComponent,
+              exact: true,
+            },
+            {
+              path: '/eu/produktua/:slug/iruzkinak/:comment',
+              component: DummyComponent,
+              exact: false,
+              routes: [
+                {
+                  path: '/eu/produktua/:slug/iruzkinak/:comment/aldatu',
+                  component: DummyComponent,
+                  exact: true,
+                },
+              ],
+            },
+          ],
         },
       ],
     },
@@ -291,13 +315,15 @@ test('Generates valid react-router-config complex nested tree', () => {
         routes: [
           {
             paths: '/',
-            routes: [{
-              paths: {
-                en: '/en-test',
-                es: '/es-test',
-                eu: '/eu-test',
+            routes: [
+              {
+                paths: {
+                  en: '/en-test',
+                  es: '/es-test',
+                  eu: '/eu-test',
+                },
               },
-            }],
+            ],
           },
           {
             paths: {
@@ -327,21 +353,27 @@ test('Generates valid react-router-config complex nested tree', () => {
       routes: [
         {
           path: '/',
-          routes: [{
-            path: '/en-test',
-          }],
+          routes: [
+            {
+              path: '/en-test',
+            },
+          ],
         },
         {
           path: '/es/',
-          routes: [{
-            path: '/es/es-test',
-          }],
+          routes: [
+            {
+              path: '/es/es-test',
+            },
+          ],
         },
         {
           path: '/eu/',
-          routes: [{
-            path: '/eu/eu-test',
-          }],
+          routes: [
+            {
+              path: '/eu/eu-test',
+            },
+          ],
         },
         {path: '/cart'},
         {path: '/es/carrito'},
