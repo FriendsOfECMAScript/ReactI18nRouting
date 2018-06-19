@@ -1,48 +1,70 @@
 import flatMap from 'lodash.flatmap';
-import pathFromRouteForPathsAndLocale from './languageStrategy/pathFromRouteForPathsAndLocale';
 
 // eslint-disable-next-line max-params
-const getRouteConfig = (
-  configRoute,
-  locale,
-  currentLocale,
-  pathFromRouteForPathsAndLocale,
-) => {
-  const {paths, ...configRouteRest} = configRoute;
+const
+  getRouteConfig = (
+    configRoute,
+    locale,
+    currentLocale,
+    pathFromRouteForPathsAndLocale,
+  ) => {
+    const {paths, ...configRouteRest} = configRoute;
 
-  return {
-    path: pathFromRouteForPathsAndLocale(paths, locale, currentLocale),
-    ...configRouteRest,
-  };
-};
+    return {
+      path: pathFromRouteForPathsAndLocale(paths, locale, currentLocale),
+      ...configRouteRest,
+    };
+  },
+  getRouteConfigForLocale = (
+    configRoute,
+    currentLocale,
+    pathFromRouteForPathsAndLocale,
+  ) => locale => getRouteConfig(
+    configRoute,
+    locale,
+    currentLocale,
+    pathFromRouteForPathsAndLocale,
+  );
 
-// eslint-disable-next-line max-params
-const renderTranslatedRoutesForLocales = (
-  configRoute,
-  routes,
-  locales,
-  currentLocale,
-  pathFromRouteForPathsAndLocale,
-) => flatMap(
-  locales.map(locale => {
-    const routeConfig = getRouteConfig(
-      configRoute,
-      locale,
-      currentLocale,
-      pathFromRouteForPathsAndLocale,
-    );
+const
+  // eslint-disable-next-line max-params
+  renderTranslatedRoutesForLocales = (
+    configRoute,
+    routes,
+    locales,
+    currentLocale,
+    pathFromRouteForPathsAndLocale,
+    getRouteConfigForCurrentLocale,
+  ) => flatMap(
+    locales.map(locale => {
+      const routeConfig = getRouteConfigForCurrentLocale(locale);
 
-    if (routeConfig.path === null) {
-      return [];
-    }
+      if (routeConfig.path === null) {
+        return [];
+      }
 
-    return renderTranslatedRoutes(
-      locales,
-      routes,
-      pathFromRouteForPathsAndLocale,
-    )(currentLocale)([routeConfig], locale);
-  }),
-);
+      return renderTranslatedRoutes(
+        locales,
+        routes,
+        pathFromRouteForPathsAndLocale,
+      )(currentLocale)([routeConfig], locale);
+    }),
+  ),
+  // eslint-disable-next-line max-params
+  renderTranslatedRoutesForConfig = (
+    configRoute,
+    routes,
+    currentLocale,
+    pathFromRouteForPathsAndLocale,
+    getRouteConfigForCurrentLocale,
+  ) => locales => renderTranslatedRoutesForLocales(
+    configRoute,
+    routes,
+    locales,
+    currentLocale,
+    pathFromRouteForPathsAndLocale,
+    getRouteConfigForCurrentLocale,
+  );
 
 // eslint-disable-next-line max-params
 const renderTranslatedRoutes = (
@@ -52,34 +74,31 @@ const renderTranslatedRoutes = (
 ) => currentLocale => (config, iterationLocale) =>
   flatMap(
     config.map(configRoute => {
+      const
+        getRouteConfigForCurrentLocale = getRouteConfigForLocale(
+          configRoute,
+          currentLocale,
+          pathFromRouteForPathsAndLocale,
+        ),
+        renderTranslatedRoutesForCurrentConfig = renderTranslatedRoutesForConfig(
+          configRoute,
+          routes,
+          currentLocale,
+          pathFromRouteForPathsAndLocale,
+          getRouteConfigForCurrentLocale,
+        );
+
       const {paths} = configRoute;
 
       if (paths) {
         if (typeof paths === 'string') {
-          return renderTranslatedRoutesForLocales(
-            configRoute,
-            routes,
-            locales,
-            currentLocale,
-            pathFromRouteForPathsAndLocale,
-          );
+          return renderTranslatedRoutesForCurrentConfig(locales);
         }
 
         if (iterationLocale) {
-          configRoute = getRouteConfig(
-            configRoute,
-            iterationLocale,
-            currentLocale,
-            pathFromRouteForPathsAndLocale,
-          );
+          configRoute = getRouteConfigForCurrentLocale(iterationLocale);
         } else {
-          return renderTranslatedRoutesForLocales(
-            configRoute,
-            routes,
-            Object.keys(paths),
-            currentLocale,
-            pathFromRouteForPathsAndLocale,
-          );
+          return renderTranslatedRoutesForCurrentConfig(Object.keys(paths));
         }
       }
 
