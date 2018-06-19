@@ -1,8 +1,7 @@
 import flatMap from 'lodash.flatmap';
 
 // eslint-disable-next-line max-params
-const
-  getRouteConfig = (
+const getRouteConfig = (
     configRoute,
     locale,
     currentLocale,
@@ -19,37 +18,38 @@ const
     configRoute,
     currentLocale,
     pathFromRouteForPathsAndLocale,
-  ) => locale => getRouteConfig(
-    configRoute,
-    locale,
-    currentLocale,
-    pathFromRouteForPathsAndLocale,
-  );
+  ) => locale =>
+    getRouteConfig(
+      configRoute,
+      locale,
+      currentLocale,
+      pathFromRouteForPathsAndLocale,
+    );
 
-const
-  // eslint-disable-next-line max-params
-  renderTranslatedRoutesForLocales = (
+// eslint-disable-next-line max-params
+const renderTranslatedRoutesForLocales = (
     configRoute,
     routes,
     locales,
     currentLocale,
     pathFromRouteForPathsAndLocale,
     getRouteConfigForCurrentLocale,
-  ) => flatMap(
-    locales.map(locale => {
-      const routeConfig = getRouteConfigForCurrentLocale(locale);
+  ) =>
+    flatMap(
+      locales.map(locale => {
+        const routeConfig = getRouteConfigForCurrentLocale(locale);
 
-      if (routeConfig.path === null) {
-        return [];
-      }
+        if (routeConfig.path === null) {
+          return [];
+        }
 
-      return renderTranslatedRoutes(
-        locales,
-        routes,
-        pathFromRouteForPathsAndLocale,
-      )(currentLocale)([routeConfig], locale);
-    }),
-  ),
+        return renderTranslatedRoutes(
+          locales,
+          routes,
+          pathFromRouteForPathsAndLocale,
+        )(currentLocale)([routeConfig], locale);
+      }),
+    ),
   // eslint-disable-next-line max-params
   renderTranslatedRoutesForConfig = (
     configRoute,
@@ -57,14 +57,15 @@ const
     currentLocale,
     pathFromRouteForPathsAndLocale,
     getRouteConfigForCurrentLocale,
-  ) => locales => renderTranslatedRoutesForLocales(
-    configRoute,
-    routes,
-    locales,
-    currentLocale,
-    pathFromRouteForPathsAndLocale,
-    getRouteConfigForCurrentLocale,
-  );
+  ) => locales =>
+    renderTranslatedRoutesForLocales(
+      configRoute,
+      routes,
+      locales,
+      currentLocale,
+      pathFromRouteForPathsAndLocale,
+      getRouteConfigForCurrentLocale,
+    );
 
 // eslint-disable-next-line max-params
 const renderTranslatedRoutes = (
@@ -74,8 +75,7 @@ const renderTranslatedRoutes = (
 ) => currentLocale => (config, iterationLocale) =>
   flatMap(
     config.map(configRoute => {
-      const
-        getRouteConfigForCurrentLocale = getRouteConfigForLocale(
+      const getRouteConfigForCurrentLocale = getRouteConfigForLocale(
           configRoute,
           currentLocale,
           pathFromRouteForPathsAndLocale,

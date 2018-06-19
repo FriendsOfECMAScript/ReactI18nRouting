@@ -1,5 +1,6 @@
 import React from 'react';
-import subdomainBased from './../../src/languageStrategy/subdomainBased';
+
+import subdomainBased from './../../src/languageStrategy/subdomainBased.js';
 
 const DummyComponent = () => <div />;
 

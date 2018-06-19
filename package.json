@@ -29,7 +29,7 @@
     "url": "https://github.com/FriendsOfECMAScript/ReactI18nRouting/issues"
   },
   "scripts": {
-    "test": "node_modules/.bin/jest --env=jsdom",
+    "test": "node_modules/.bin/npm-install-peers && node_modules/.bin/jest --env=jsdom",
     "prebuild": "node_modules/.bin/rimraf dist && node_modules/.bin/mkdirp dist",
     "build": "yarn prebuild && yarn cs && yarn common-bundle && yarn esm-bundle",
     "common-bundle": "node_modules/.bin/babel --copy-files --out-dir dist/common src",
@@ -81,6 +81,7 @@
     "babel-jest": "^23.0.1",
     "jest": "^23.1.0",
     "mkdirp": "^0.5.1",
+    "npm-install-peers": "^1.2.1",
     "prettier": "^1.10.2",
     "regenerator-runtime": "^0.11.1",
     "rimraf": "^2.6.2"

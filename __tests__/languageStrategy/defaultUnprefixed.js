@@ -1,5 +1,6 @@
 import React from 'react';
-import defaultUnprefixed from './../../src/languageStrategy/defaultUnprefixed';
+
+import defaultUnprefixed from './../../src/languageStrategy/defaultUnprefixed.js';
 
 const DummyComponent = () => <div />;
 
