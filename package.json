@@ -6,6 +6,8 @@
   "keywords": [
     "i18n",
     "react",
+    "react-router",
+    "react-intl",
     "routing"
   ],
   "authors": [
@@ -17,6 +19,10 @@
     {
       "name": "Gorka Laucirica Ibarra",
       "email": "gorka.lauzirika@gmail.com"
+    },
+    {
+      "name": "Mikel Tuesta Sanchez",
+      "email": "mikeltuesta@gmail.com"
     }
   ],
   "main": "dist/common/index.js",
@@ -31,7 +37,7 @@
   "scripts": {
     "test": "node_modules/.bin/npm-install-peers && node_modules/.bin/jest --env=jsdom",
     "prebuild": "node_modules/.bin/rimraf dist && node_modules/.bin/mkdirp dist",
-    "build": "yarn prebuild && yarn cs && yarn common-bundle && yarn esm-bundle",
+    "build": "npm run prebuild && npm run cs && npm run common-bundle && npm run esm-bundle",
     "common-bundle": "node_modules/.bin/babel --copy-files --out-dir dist/common src",
     "esm-bundle": "cp -R src dist/esm",
     "cs": "node_modules/.bin/prettier 'tests/**/*.js' 'src/**/*.js' --write --single-quote --no-bracket-spacing --trailing-comma all"
@@ -59,11 +65,27 @@
       "minify"
     ],
     "env": {
-      "plugins": [
-        "@babel/plugin-proposal-class-properties",
-        "@babel/plugin-proposal-object-rest-spread",
-        "@babel/plugin-transform-modules-commonjs"
-      ]
+      "development": {
+        "plugins": [
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread",
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      },
+      "production": {
+        "plugins": [
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread",
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      },
+      "test": {
+        "plugins": [
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread",
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      }
     }
   },
   "dependencies": {
