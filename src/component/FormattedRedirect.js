@@ -1,0 +1,25 @@
+import React from 'react';
+import {Redirect} from 'react-router-dom';
+import {injectIntl} from 'react-intl';
+
+const FormattedRedirect = ({name, params, intl, locale, ...rest}) => {
+  if (!intl.formats.formatIntlRoute) {
+    throw new Error(
+      'LanguageStrategy formatter is missing, pass formatIntlRoute as parameter to IntlProvider or to' +
+        ' BrowserIntlProvider',
+    );
+  }
+
+  return (
+    <Redirect
+      to={intl.formats.formatIntlRoute(
+        name,
+        params,
+        locale ? locale : intl.locale,
+      )}
+      {...rest}
+    />
+  );
+};
+
+export default injectIntl(FormattedRedirect);

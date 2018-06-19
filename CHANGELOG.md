@@ -5,8 +5,9 @@ This changelog references the relevant changes done between versions.
 To get the diff for a specific change, go to https://github.com/FriendsOfECMAScript/ReactI18nRouting/commit/XXX where XXX is the change hash 
 To get the diff between two versions, go to https://github.com/FriendsOfECMAScript/ReactI18nRouting/compare/v0.2.0...v0.3.0
 
-* 0.4.0
-    * Added a `FormattedNavLink` implementation.
+* 0.x.0
+    * Added `FormattedRedirect` component.
+    * Added `FormattedNavLink` component.
 * 0.3.0
     * Added License, Travis and other useful files to make the library more compliant with OSS.
     * Decoupled `BrowserIntlProvider` from Redux, allowing other implementations like `LocalStorage` or `InMemory`.
