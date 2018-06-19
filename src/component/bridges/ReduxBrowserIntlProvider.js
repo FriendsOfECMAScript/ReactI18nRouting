@@ -1,14 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {setLocale} from './../../locale.js';
 
-class ReduxBrowserIntlProvider extends Component {
+export const LANGUAGE_CHANGE = '@@i18n/LANGUAGE_CHANGE';
+
+class ReduxBrowserIntlProvider extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
-    store: PropTypes.object,
     localeFromPath: PropTypes.func.isRequired,
+    store: PropTypes.object,
   };
 
   static contextTypes = {
@@ -54,8 +56,6 @@ export function i18nReducer(state = initialState, {type, payload} = {}) {
 
   return state;
 }
-
-export const LANGUAGE_CHANGE = '@@i18n/LANGUAGE_CHANGE';
 
 const defaultSelector = state => state.i18n;
 

@@ -1,0 +1,19 @@
+; This file is part of the ReactI18nRouting package.
+;
+; Copyright (c) 2018-present Friends Of ECMAScript
+;
+; For the full copyright and license information, please view the LICENSE
+; file that was distributed with this source code.
+
+root = true
+
+[*]
+end_of_line = LF
+
+[*.{js}]
+indent_style = space
+indent_size = 2
+
+[{package.json}]
+indent_style = space
+indent_size = 2

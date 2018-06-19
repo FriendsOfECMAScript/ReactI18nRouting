@@ -3,6 +3,11 @@ import {formatRoute} from 'react-router-named-routes';
 import renderTranslatedRoutes from './../renderTranslatedRoutes.js';
 import pathFromRouteForPathsAndLocale from './pathFromRouteForPathsAndLocale.js';
 
+const subdomainFromHostname = hostname => hostname.split('.')[0];
+
+const hostnameForLocale = (locale, subdomains, domain) =>
+  `//${subdomains[locale]}.${domain}`;
+
 const localeFromLocation = (subdomains, defaultLocale) => location => {
   let currentLocale = defaultLocale;
   Object.keys(subdomains).forEach(locale => {
@@ -29,10 +34,6 @@ const formatIntlRoute = (routes, subdomain, domain) => (
 
   return `${prefix}${formatRoute(routes[routeName][locale], params)}`;
 };
-
-const subdomainFromHostname = hostname => hostname.split('.')[0];
-const hostnameForLocale = (locale, subdomains, domain) =>
-  `//${subdomains[locale]}.${domain}`;
 
 const pathFromRoute = (paths, locale, defaultLocale, currentLocale) => {
   if (locale !== currentLocale) {

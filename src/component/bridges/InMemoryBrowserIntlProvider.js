@@ -6,7 +6,7 @@ import {setLocale} from './../../locale.js';
 class InMemoryBrowserIntlProvider extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
-    lang: PropTypes.string,
+    locale: PropTypes.string,
     localeFromPath: PropTypes.func.isRequired,
   };
 
@@ -15,20 +15,20 @@ class InMemoryBrowserIntlProvider extends React.Component {
   };
 
   componentDidMount() {
-    const {lang} = this.props;
+    const {locale} = this.props;
 
-    this.setState({lang: lang});
+    this.setState({lang: locale});
   }
 
   handleLocationChange = location => {
     const {localeFromPath} = this.props;
 
-    const lang = localeFromPath({
+    const locale = localeFromPath({
       ...location,
       hostname: typeof window !== 'undefined' ? window.location.hostname : '',
     });
-    setLocale(lang);
-    this.setState({lang: lang});
+    setLocale(locale);
+    this.setState({lang: locale});
   };
 
   render() {

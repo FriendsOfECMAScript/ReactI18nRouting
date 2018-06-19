@@ -6,6 +6,7 @@ To get the diff for a specific change, go to https://github.com/FriendsOfECMAScr
 To get the diff between two versions, go to https://github.com/FriendsOfECMAScript/ReactI18nRouting/compare/v0.2.0...v0.3.0
 
 * 0.3.0
+    * Added License, Travis and other useful files to make the library more compliant with OSS.
     * Decoupled `BrowserIntlProvider` from Redux, allowing other implementations like `LocalStorage` or `InMemory`.
     * Refactored the `renderTranslatedRoutes` implementation to allow deeply nested routes configuration object.
 * 0.2.0

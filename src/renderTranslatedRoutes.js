@@ -43,6 +43,7 @@ const renderTranslatedRoutesForLocales = (
           return [];
         }
 
+        // eslint-disable-next-line no-use-before-define
         return renderTranslatedRoutes(
           locales,
           routes,
