@@ -1,5 +1,6 @@
 import {formatRoute} from 'react-router-named-routes';
 import renderTranslatedRoutes from '../renderTranslatedRoutes';
+import pathFromRouteForPathsAndLocale from './pathFromRouteForPathsAndLocale';
 
 const localeFromLocation = (subdomains, defaultLocale) => location => {
   let currentLocale = defaultLocale;
@@ -49,8 +50,7 @@ export default ({routes, locales, defaultLocale, subdomains, domain}) => ({
   formatIntlRoute: formatIntlRoute(routes, subdomains, domain),
   renderRoutes: renderTranslatedRoutes(
     locales,
-    defaultLocale,
     routes,
-    pathFromRoute,
+    pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute),
   ),
 });

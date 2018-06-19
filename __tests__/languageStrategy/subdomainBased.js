@@ -126,7 +126,9 @@ test('Generates valid react-router-config complex nested tree', () => {
               eu: '/saskia',
             },
           },
-          {paths: '/login'},
+          {
+            paths: '/login',
+          },
           {
             paths: {
               en: '/product/:slug',
@@ -134,8 +136,12 @@ test('Generates valid react-router-config complex nested tree', () => {
               eu: '/produktua/:slug',
             },
           },
-          {path: '/checkout/:step?'},
-          {path: '*'},
+          {
+            path: '/checkout/:step?',
+          },
+          {
+            path: '*',
+          },
         ],
       },
     ]),

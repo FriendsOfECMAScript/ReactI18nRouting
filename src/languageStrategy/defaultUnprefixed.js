@@ -1,5 +1,6 @@
 import {formatRoute} from 'react-router-named-routes';
 import renderTranslatedRoutes from '../renderTranslatedRoutes';
+import pathFromRouteForPathsAndLocale from './pathFromRouteForPathsAndLocale';
 
 const localeFromLocation = (locales, defaultLocale) => location => {
   const match = /^\/([a-z]{2}).*/g.exec(location.pathname);
@@ -46,8 +47,7 @@ export default ({routes, locales, defaultLocale}) => ({
   formatIntlRoute: formatIntlRoute(routes, defaultLocale),
   renderRoutes: renderTranslatedRoutes(
     locales,
-    defaultLocale,
     routes,
-    pathFromRoute,
+    pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute),
   ),
 });
