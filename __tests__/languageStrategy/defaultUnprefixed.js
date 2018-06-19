@@ -290,6 +290,13 @@ test('Generates valid react-router-config complex nested tree', () => {
         routes: [
           {
             paths: '/',
+            routes: [{
+              paths: {
+                en: '/en-test',
+                es: '/es-test',
+                eu: '/eu-test',
+              },
+            }],
           },
           {
             paths: {
@@ -317,9 +324,24 @@ test('Generates valid react-router-config complex nested tree', () => {
     {
       path: '/',
       routes: [
-        {path: '/'},
-        {path: '/es/'},
-        {path: '/eu/'},
+        {
+          path: '/',
+          routes: [{
+            path: '/en-test',
+          }],
+        },
+        {
+          path: '/es/',
+          routes: [{
+            path: '/es/es-test',
+          }],
+        },
+        {
+          path: '/eu/',
+          routes: [{
+            path: '/eu/eu-test',
+          }],
+        },
         {path: '/cart'},
         {path: '/es/carrito'},
         {path: '/eu/saskia'},
