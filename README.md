@@ -2,7 +2,7 @@
 > Provides components and functions to make i18n routing React apps with ease.
 
 [![npm version](https://img.shields.io/npm/v/@foes/react-i18n-routing.svg?style=flat-square)](https://www.npmjs.com/package/@foes/react-i18n-routing)
-[![Build Status](http://img.shields.io/travis/FriendsOfECMAScript/BenGorCookies/master.svg?style=flat-square)](https://travis-ci.org/FriendsOfECMAScript/ReactI18nRouting)
+[![Build Status](http://img.shields.io/travis/FriendsOfECMAScript/ReactI18nRouting/master.svg?style=flat-square)](https://travis-ci.org/FriendsOfECMAScript/ReactI18nRouting)
 [![NPM Status](http://img.shields.io/npm/dm/@foes/react-i18n-routing.svg?style=flat-square)](https://www.npmjs.org/package/@foes/react-i18n-routing)
 [![devDependency Status](https://img.shields.io/david/FriendsOfECMAScript/ReactI18nRouting.svg?style=flat-square)](https://david-dm.org/FriendsOfECMAScript/ReactI18nRouting#info=dependencies)
 
