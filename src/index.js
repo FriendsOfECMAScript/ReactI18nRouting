@@ -6,6 +6,7 @@ import ReduxBrowserIntlProvider, {
   LANGUAGE_CHANGE,
 } from './component/bridges/ReduxBrowserIntlProvider.js';
 import FormattedLink from './component/FormattedLink.js';
+import FormattedNavLink from './component/FormattedNavLink.js';
 import defaultUnPrefixed from './languageStrategy/defaultUnprefixed.js';
 import subdomainBased from './languageStrategy/subdomainBased.js';
 import renderTranslatedRoutes from './renderTranslatedRoutes.js';
@@ -19,6 +20,7 @@ export {
   i18nReducer,
   LANGUAGE_CHANGE,
   FormattedLink,
+  FormattedNavLink,
   defaultUnPrefixed,
   subdomainBased,
   renderTranslatedRoutes,
