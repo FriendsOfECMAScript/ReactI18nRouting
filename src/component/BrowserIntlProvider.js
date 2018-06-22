@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 class BrowserIntlProvider extends React.Component {
   static propTypes = {
     children: PropTypes.node,
+    formats: PropTypes.func.isRequired,
     handleLocationChange: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
     isSSR: PropTypes.bool,
@@ -28,7 +29,7 @@ class BrowserIntlProvider extends React.Component {
   }
 
   render() {
-    const {lang, children, messages, ...rest} = this.props;
+    const {children, formats, lang, messages, ...rest} = this.props;
 
     if (!lang) {
       return '';
@@ -36,6 +37,7 @@ class BrowserIntlProvider extends React.Component {
 
     return (
       <IntlProvider
+        formats={formats}
         key={lang}
         locale={lang}
         messages={messages[lang]}
