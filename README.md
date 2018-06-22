@@ -7,15 +7,15 @@
 [![devDependency Status](https://img.shields.io/david/FriendsOfECMAScript/ReactI18nRouting.svg?style=flat-square)](https://david-dm.org/FriendsOfECMAScript/ReactI18nRouting#info=dependencies)
 
 ## Why?
-There are robust solutions that they have become in standard solutions to usual problems in *React ecosystem such as
-internalization with `React-Intl` and routing with `React-Router`.
+There are robust solutions that they have become in standard solutions to usual problems in *React* ecosystem such as
+**internalization** with *React-Intl* and **routing** with *React-Router*.
 There are awesome libraries that they make our life more easy building apps but, what happens when we need to combine
 two parts in our projects? In this case we think that some other library is needed to join the routing and i18n systems
-so, we have created the **ReactI18nRouting**.
+so, we have created the ReactI18nRouting.
 
 This library aims to provide all the needed this to make the internationalization of the routes as easy as possible.
-We truly trust in the "Single Responsibility Pattern" so, we have designed the library following the UNIX popular
-concept: *DOTADIW, or "Do One Thing and Do It Well"*.
+We truly trust in the **Single Responsibility Patter** so, we have designed the library following the UNIX popular
+concept:<br>*DOTADIW, or "Do One Thing and Do It Well"*.
 
 ## Installation
 The recommended and the most suitable way to install is through *Yarn*.
