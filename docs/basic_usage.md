@@ -64,7 +64,7 @@ import {Provider} from 'react-redux';
 import {ReduxBrowserIntlProvider} from '@foes/react-i18n-routing';
 import createHistory from 'history/createBrowserHistory';
 
-import i18n from './i18n';
+import i18n from './i18n/index.js';   // This is previously implemented file
 
 const history = createHistory();
 
