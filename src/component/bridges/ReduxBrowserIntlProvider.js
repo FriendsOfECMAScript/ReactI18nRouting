@@ -51,11 +51,19 @@ export function i18nReducer(state = initialState, {type, payload} = {}) {
 
 const defaultSelector = state => state.i18n;
 
-export const ConnectedReduxBrowserIntlProvider = connect((state, i18nStateSelector = defaultSelector) => ({
-  lang: i18nStateSelector(state).locale,
-}))(ReduxBrowserIntlProvider);
+export const ConnectedReduxBrowserIntlProvider = connect(
+  (state, i18nStateSelector = defaultSelector) => ({
+    lang: i18nStateSelector(state).locale,
+  }),
+)(ReduxBrowserIntlProvider);
 
-export default ({children, formatIntlRoute, history, localeFromPath, messages}) => (
+export default ({
+  children,
+  formatIntlRoute,
+  history,
+  localeFromPath,
+  messages,
+}) => (
   <ConnectedReduxBrowserIntlProvider localeFromPath={localeFromPath}>
     {(lang, handleLocationChange) => (
       <BrowserIntlProvider
@@ -65,9 +73,7 @@ export default ({children, formatIntlRoute, history, localeFromPath, messages}) 
         lang={lang}
         messages={messages}
       >
-        <ConnectedRouter history={history}>
-          {children}
-        </ConnectedRouter>
+        <ConnectedRouter history={history}>{children}</ConnectedRouter>
       </BrowserIntlProvider>
     )}
   </ConnectedReduxBrowserIntlProvider>
