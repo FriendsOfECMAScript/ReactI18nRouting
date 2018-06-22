@@ -4,6 +4,9 @@ Because this library has multiple points, this section provides a simple cookboo
 in your application. In other chapters you can check more info about BrowserIntlProvider and language strategies, but
 to keep this tutorial simple we are going to use **ReduxBrowserIntlProvider** and **defaultUnprefixed**.
 
+First of all, we need to configure our language strategy. The following code represents the minimum required code to
+make work the *defaultUnPrefixed* strategy.
+
 ```javascript
 // src/i18n/languageStrategy.js
 
@@ -24,6 +27,8 @@ export const localeFromLocation = languageStrategy.localeFromLocation;
 
 export default languageStrategy;
 ```
+After that, we are ready to configure our application's i18n preferences. In this case we are also
+configuring the *react-intl* locales. This file exposes some useful methods to use in your application bootstrapping.  
 
 ```javascript
 // src/i18n/index.js
@@ -53,36 +58,6 @@ export default {
   messages: {en: messagesEn, es: messagesEs, eu: messagesEu, fr: messagesFr},
   renderRoutes: config => languageStrategy.renderRoutes(getLocale())(config),
 };
-```
-
-```javascript
-// src/index.js
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {ReduxBrowserIntlProvider} from '@foes/react-i18n-routing';
-import createHistory from 'history/createBrowserHistory';
-
-import i18n from './i18n/index.js';   // This is previously implemented file
-
-const history = createHistory();
-
-const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
-
-renderMethod(
-  <Provider store={store}>
-    <ReduxBrowserIntlProvider
-      formats={{formatIntlRoute: i18n.formatIntlRoute}}
-      history={history}
-      localeFromPath={i18n.localeFromLocation}
-      messages={i18n.messages}
-    >
-      {...}
-    </ReduxBrowserIntlProvider>
-  </Provider>,
-  document.getElementById('root'),
-);
 ```
 It has been built on top of **react-router-config**, and each language strategy provides a helper to transform
 the intl routing to valid react-router-config routing. We strongly recommend that you separate in different modules
@@ -134,6 +109,41 @@ export default [
   },
 ];
 ```
+The following file is the entry point of your React app.
+
+```javascript
+// src/index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {renderRoutes} from 'react-router-config';
+import {ReduxBrowserIntlProvider} from '@foes/react-i18n-routing';
+import createHistory from 'history/createBrowserHistory';
+
+// There are previously implemented files
+import i18n from './i18n/index.js';
+import routes from './routing/routes.js';
+
+const history = createHistory();
+
+const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
+
+renderMethod(
+  <Provider store={store}>
+    <ReduxBrowserIntlProvider
+      formats={{formatIntlRoute: i18n.formatIntlRoute}}
+      history={history}
+      localeFromPath={i18n.localeFromLocation}
+      messages={i18n.messages}
+    >
+      {renderRoutes(i18n.renderRoutes(routes))}
+    </ReduxBrowserIntlProvider>
+  </Provider>,
+  document.getElementById('root'),
+);
+```
+
 - For more information about browser intl provider strategies check [this guide](browser_intl_provider_strategies.md).
 - In order to need more info about language strategies check [this guide](language_strategies.md).
 - Back to the [index](index.md).
