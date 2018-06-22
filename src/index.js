@@ -2,6 +2,7 @@ import BrowserIntlProvider from './component/BrowserIntlProvider.js';
 import InMemoryBrowserIntlProvider from './component/bridges/InMemoryBrowserIntlProvider.js';
 import LocalStorageBrowserIntlProvider from './component/bridges/LocalStorageBrowserIntlProvider.js';
 import ReduxBrowserIntlProvider, {
+  ConnectedReduxBrowserIntlProvider,
   i18nReducer,
   LANGUAGE_CHANGE,
 } from './component/bridges/ReduxBrowserIntlProvider.js';
@@ -20,6 +21,7 @@ export {
   InMemoryBrowserIntlProvider,
   LocalStorageBrowserIntlProvider,
   ReduxBrowserIntlProvider,
+  ConnectedReduxBrowserIntlProvider,
   i18nReducer,
   LANGUAGE_CHANGE,
   FormattedLink,
