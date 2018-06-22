@@ -6,6 +6,7 @@ To get the diff for a specific change, go to https://github.com/FriendsOfECMAScr
 To get the diff between two versions, go to https://github.com/FriendsOfECMAScript/ReactI18nRouting/compare/v0.3.0...v0.4.0
 
 * 0.5.0
+    * Added documentation basic structure and written some chapters.
     * Implemented HOC to avoid Boilerplate bootstrapping the redux browser intl provider.
 * 0.4.0
     * Added `FormattedRedirect` and `FormattedNavLink` components.
