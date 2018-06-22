@@ -67,7 +67,7 @@ export default ({
   <ConnectedReduxBrowserIntlProvider localeFromPath={localeFromPath}>
     {(lang, handleLocationChange) => (
       <BrowserIntlProvider
-        formats={{formatIntlRoute: formatIntlRoute}}
+        formats={{formatIntlRoute}}
         handleLocationChange={handleLocationChange}
         history={history}
         lang={lang}
