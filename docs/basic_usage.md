@@ -42,11 +42,7 @@ import routes from './../routing/routes';
 export const locales = ['eu', 'es', 'en', 'fr'];
 const defaultLocale = 'eu';
 
-const languageStrategy = defaultUnPrefixed({
-  routes: routes,
-  locales: locales,
-  defaultLocale: defaultLocale,
-});
+const languageStrategy = defaultUnPrefixed({routes, locales, defaultLocale});
 
 export const formatIntlRoute = languageStrategy.formatIntlRoute;
 export const localeFromLocation = languageStrategy.localeFromLocation;
