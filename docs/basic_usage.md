@@ -72,7 +72,7 @@ import messagesFr from './messages/fr.json';
 addLocaleData([...en, ...es, ...eu, ...fr]);
 
 export default {
-  formatIntlRoute: (route, params, locale) => formatIntlRoute(route, params, locale || getLocale()),
+  formatIntlRoute: formatIntlRoute,
   localeFromLocation: localeFromLocation,
   locales: locales,
   messages: {en: messagesEn, es: messagesEs, eu: messagesEu, fr: messagesFr},

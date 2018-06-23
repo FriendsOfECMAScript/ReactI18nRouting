@@ -1,5 +1,6 @@
 import {formatRoute} from 'react-router-named-routes';
 
+import {getLocale} from './../locale.js';
 import renderTranslatedRoutes from './../renderTranslatedRoutes.js';
 import pathFromRouteForPathsAndLocale from './pathFromRouteForPathsAndLocale.js';
 
@@ -18,7 +19,7 @@ const localePrefix = defaultLocale => locale =>
 const formatIntlRoute = (routes, defaultLocale) => (
   routeName,
   params = {},
-  locale = null,
+  locale = getLocale(),
 ) => {
   locale = locale || defaultLocale;
 
