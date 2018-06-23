@@ -28,40 +28,22 @@ export default {
   },
 };
 ```
-
-Then, we need to configure our language strategy. The following code represents the minimum required code to
-make work the *defaultUnPrefixed* strategy.
-
-```javascript
-// src/i18n/languageStrategy.js
-
-import {defaultUnPrefixed} from '@foes/react-i18n-routing';
-
-import routes from './../routing/routes';
-
-export const locales = ['eu', 'es', 'en', 'fr'];
-const defaultLocale = 'eu';
-
-const languageStrategy = defaultUnPrefixed({routes, locales, defaultLocale});
-
-export const formatIntlRoute = languageStrategy.formatIntlRoute;
-export const localeFromLocation = languageStrategy.localeFromLocation;
-export const renderRoutes = languageStrategy.renderRoutes;
-```
-After that, we are ready to configure our application's i18n preferences. In this case we are also
-configuring the *react-intl* locales. This file exposes some useful methods to use in your application bootstrapping.  
+After that, we are ready to configure our application's i18n preferences. We need to configure our language strategy.
+The following code represents the minimum required code to make work the *defaultUnPrefixed* strategy.
+In this case we are also configuring the *react-intl* locales. This file exposes some useful methods to use in your
+application bootstrapping.  
 
 ```javascript
 // src/i18n/index.js
 
-import {getLocale} from '@foes/react-i18n-routing';
+import {defaultUnPrefixed, getLocale} from '@foes/react-i18n-routing';
 import {addLocaleData} from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import es from 'react-intl/locale-data/es';
 import eu from 'react-intl/locale-data/eu';
 import fr from 'react-intl/locale-data/fr';
 
-import {locales, formatIntlRoute, localeFromLocation, renderRoutes} from './languageStrategy';
+import routes from './../routing/routes';
 
 // There are simple json files with the language strings
 import messagesEn from './messages/en.json';
@@ -71,12 +53,15 @@ import messagesFr from './messages/fr.json';
 
 addLocaleData([...en, ...es, ...eu, ...fr]);
 
+const locales = ['eu', 'es', 'en', 'fr'];
+const defaultLocale = 'eu';
+const languageStrategy = defaultUnPrefixed({routes, locales, defaultLocale});
+
 export default {
-  formatIntlRoute: formatIntlRoute,
-  localeFromLocation: localeFromLocation,
-  locales: locales,
+  formatIntlRoute: languageStrategy.formatIntlRoute,
+  localeFromLocation: languageStrategy.localeFromLocation,
   messages: {en: messagesEn, es: messagesEs, eu: messagesEu, fr: messagesFr},
-  renderRoutes: config => renderRoutes(getLocale())(config),
+  renderRoutes: config => languageStrategy.renderRoutes(getLocale())(config),
 };
 ```
 It has been built on top of **react-router-config**, and each language strategy provides a helper to transform
