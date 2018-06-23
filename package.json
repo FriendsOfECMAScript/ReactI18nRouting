@@ -46,6 +46,7 @@
   },
   "files": [
     "dist",
+    "docs",
     "CHANGELOG.md",
     "README.md"
   ],
