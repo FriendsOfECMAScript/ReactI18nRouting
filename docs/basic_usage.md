@@ -36,7 +36,7 @@ application bootstrapping.
 ```javascript
 // src/i18n/index.js
 
-import {defaultUnPrefixed, getLocale} from '@foes/react-i18n-routing';
+import {defaultUnprefixed, getLocale} from '@foes/react-i18n-routing';
 import {addLocaleData} from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import es from 'react-intl/locale-data/es';
@@ -55,7 +55,7 @@ addLocaleData([...en, ...es, ...eu, ...fr]);
 
 const locales = ['eu', 'es', 'en', 'fr'];
 const defaultLocale = 'eu';
-const languageStrategy = defaultUnPrefixed({routes, locales, defaultLocale});
+const languageStrategy = defaultUnprefixed({routes, locales, defaultLocale});
 
 export default {
   formatIntlRoute: languageStrategy.formatIntlRoute,

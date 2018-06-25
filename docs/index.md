@@ -1,4 +1,4 @@
-# ReactI18nRouting documentation
+# Documentation
 
 * [Basic usage](basic_usage.md)
 * [BrowserIntlProvider strategies](browser_intl_provider_strategies.md)

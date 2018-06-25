@@ -37,14 +37,13 @@ This library follows the modern JavaScript coding standards, so pull requests ne
 [Prettier][2]. This task can be very boring but, in the `package.json` there are some useful
 npm-scripts that becomes this process simpler and faster.
 ```bash
-$ yarn eslint           # or npm run eslint
-$ yarn prettier         # or npm run prettier
+$ yarn cs           # or npm run cs
 ```
 There is also a policy for contributing to this library. Pull requests must be explained step by step to make the
 review process easy in order to accept and merge them. New methods or code improvements must come paired with
 tests. We are using [Jest][3] test framework for that purpose.
 ```bash
-$ yarn test             # or npm test
+$ yarn test         # or npm test
 ```
 
 ## Credits

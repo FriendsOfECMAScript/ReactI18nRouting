@@ -2,8 +2,8 @@
 
 Your application routes system must follow a concrete strategy. At this moment, this library supports the following:
 
-* [Default unPrefixed](#default-unprefixed)
-* [Domain based](#domain-based)
+* [Default unprefixed](#default-unprefixed)
+* [Subdomain based](#subdomain-based)
 
 All language strategies exposes the same API:
 
@@ -13,19 +13,19 @@ default will be used). Rest of parameters are passed as arguments to `formatRout
 * `renderRoutes(config)`: Like ReactRouterConfig's renderRoutes, renders the tree of router from given node, but
 supporting the translations.
 
-## Default unPrefixed
+## Default unprefixed
 Prefixes all paths with locales but the locale set as default.
 
 ```javascript
-import {defaultUnPrefixed} from '@foes/react-i18n-routing';
+import {defaultUnprefixed} from '@foes/react-i18n-routing';
 
 const locales = ['eu', 'es', 'en', 'fr'];
 const defaultLocale = 'eu';
 
-const languageStrategy = defaultUnPrefixed({routes, locales, defaultLocale});
+const languageStrategy = defaultUnprefixed({routes, locales, defaultLocale});
 ```
 
-## Domain based
+## Subdomain based
 Based on domain resolves current locale.
 
 ```javascript
