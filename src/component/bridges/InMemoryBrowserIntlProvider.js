@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import BrowserIntlProvider from './../BrowserIntlProvider.js';
 import {setLocale} from './../../locale.js';
 
 export class InMemoryBrowserIntlProvider extends React.Component {
