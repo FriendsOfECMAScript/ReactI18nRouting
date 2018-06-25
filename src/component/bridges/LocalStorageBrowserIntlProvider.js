@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {setLocale} from './../../locale.js';
 
-class LocalStorageBrowserIntlProvider extends React.Component {
+export class LocalStorageBrowserIntlProvider extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
     localeFromPath: PropTypes.func.isRequired,
@@ -33,4 +33,24 @@ class LocalStorageBrowserIntlProvider extends React.Component {
   }
 }
 
-export default LocalStorageBrowserIntlProvider;
+export default ({
+  children,
+  formatIntlRoute,
+  history,
+  localeFromPath,
+  messages,
+}) => (
+  <LocalStorageBrowserIntlProvider localeFromPath={localeFromPath}>
+    {(lang, handleLocationChange) => (
+      <BrowserIntlProvider
+        formats={{formatIntlRoute}}
+        handleLocationChange={handleLocationChange}
+        history={history}
+        lang={lang}
+        messages={messages}
+      >
+        {children}
+      </BrowserIntlProvider>
+    )}
+  </LocalStorageBrowserIntlProvider>
+);

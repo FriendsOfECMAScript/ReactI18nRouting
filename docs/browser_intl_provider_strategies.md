@@ -31,9 +31,6 @@ const history = createHistory();
   {renderRoutes(i18n.renderRoutes(routes))}
 </ReduxBrowserIntlProvider>
 ```
-> *i18n* is a library's configuration and *routes* is an array that contains all the tree, if you want to learn more
-about that, please check [basic usage](basic_usage.md) chapter
-
 This strategy apart of intl provider also exposes a fully functional reducer that fires when also exposed
 `LANGUAGE_CHANGE` event is dispatched in the Redux actions.
 
@@ -56,10 +53,48 @@ export default combineReducers({
 
 ## Local storage intl provider
 
-TODO
+```javascript
+import {LocalStorageBrowserIntlProvider} from '@foes/react-i18n-routing';
+import createHistory from 'history/createBrowserHistory';
+
+import i18n from './i18n/index.js';
+import routes from './routing/routes.js';
+
+const history = createHistory();
+
+<LocalStorageBrowserIntlProvider
+  formats={{formatIntlRoute: i18n.formatIntlRoute}}
+  history={history}
+  localeFromPath={i18n.localeFromLocation}
+  messages={i18n.messages}
+>
+  {renderRoutes(i18n.renderRoutes(routes))}
+</LocalStorageBrowserIntlProvider>
+```
 
 ## In memory intl provider
 
-TODO
+```javascript
+import {InMemoryBrowserIntlProvider} from '@foes/react-i18n-routing';
+import createHistory from 'history/createBrowserHistory';
+
+import i18n from './i18n/index.js';
+import routes from './routing/routes.js';
+
+const history = createHistory();
+
+<InMemoryBrowserIntlProvider
+  formats={{formatIntlRoute: i18n.formatIntlRoute}}
+  history={history}
+  locale="eu"
+  localeFromPath={i18n.localeFromLocation}
+  messages={i18n.messages}
+>
+  {renderRoutes(i18n.renderRoutes(routes))}
+</InMemoryBrowserIntlProvider>
+```
+
+> *i18n* is a library's configuration and *routes* is an array that contains all the tree, if you want to learn more
+about that, please check [basic usage](basic_usage.md) chapter
 
 - Back to the [index](index.md).
