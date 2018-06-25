@@ -13,11 +13,11 @@ const FormattedRouter = ({intl, children}) => {
   return children;
 };
 
-export const FormattedRedirect = injectIntl(
+export const FormattedLink = injectIntl(
   ({name, params, intl, locale, ...rest}) => {
     return (
       <FormattedRouter intl={intl}>
-        <Redirect
+        <Link
           to={intl.formats.formatIntlRoute(
             name,
             params,
@@ -47,11 +47,11 @@ export const FormattedNavLink = injectIntl(
   },
 );
 
-export const FormattedLink = injectIntl(
+export const FormattedRedirect = injectIntl(
   ({name, params, intl, locale, ...rest}) => {
     return (
       <FormattedRouter intl={intl}>
-        <Link
+        <Redirect
           to={intl.formats.formatIntlRoute(
             name,
             params,
