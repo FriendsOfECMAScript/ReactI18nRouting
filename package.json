@@ -1,6 +1,6 @@
 {
   "name": "@foes/react-i18n-routing",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "license": "MIT",
   "description": "Provides components and functions to make i18n routing React apps with ease.",
   "keywords": [
@@ -40,12 +40,13 @@
     "build": "npm run prebuild && npm run cs && npm run common-bundle && npm run esm-bundle",
     "common-bundle": "node_modules/.bin/babel --copy-files --out-dir dist/common src",
     "esm-bundle": "cp -R src dist/esm",
-    "cs": "npm run eslint && npm run prettier",
+    "cs": "npm run prettier && npm run eslint",
     "prettier": "node_modules/.bin/prettier 'tests/**/*.js' 'src/**/*.js' --write --single-quote --no-bracket-spacing --trailing-comma all",
-    "eslint": "node_modules/.bin/eslint src/**/*.js tests/**/*.js"
+    "eslint": "node_modules/.bin/eslint src tests"
   },
   "files": [
     "dist",
+    "docs",
     "CHANGELOG.md",
     "README.md"
   ],
@@ -125,6 +126,7 @@
     "react-intl": ">=2.x",
     "react-redux": ">=5.x",
     "react-router-dom": ">=4.x",
-    "react-router-named-routes": ">=0.x"
+    "react-router-named-routes": ">=0.x",
+    "react-router-redux": ">=4.x"
   }
 }

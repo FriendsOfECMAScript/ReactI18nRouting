@@ -1,5 +1,6 @@
 import {formatRoute} from 'react-router-named-routes';
 
+import {getLocale} from './../locale.js';
 import renderTranslatedRoutes from './../renderTranslatedRoutes.js';
 import pathFromRouteForPathsAndLocale from './pathFromRouteForPathsAndLocale.js';
 
@@ -22,7 +23,7 @@ const localeFromLocation = (subdomains, defaultLocale) => location => {
 const formatIntlRoute = (routes, subdomain, domain) => (
   routeName,
   params = {},
-  locale = null,
+  locale = getLocale(),
 ) => {
   const prefix = params.absolute
     ? hostnameForLocale(locale, subdomain, domain)

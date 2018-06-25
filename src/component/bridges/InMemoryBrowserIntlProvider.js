@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import BrowserIntlProvider from './../BrowserIntlProvider.js';
 import {setLocale} from './../../locale.js';
 
-class InMemoryBrowserIntlProvider extends React.Component {
+export class InMemoryBrowserIntlProvider extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
     locale: PropTypes.string,
@@ -36,4 +37,25 @@ class InMemoryBrowserIntlProvider extends React.Component {
   }
 }
 
-export default InMemoryBrowserIntlProvider;
+export default ({
+  children,
+  formatIntlRoute,
+  history,
+  locale,
+  localeFromPath,
+  messages,
+}) => (
+  <InMemoryBrowserIntlProvider locale={locale} localeFromPath={localeFromPath}>
+    {(lang, handleLocationChange) => (
+      <BrowserIntlProvider
+        formats={{formatIntlRoute}}
+        handleLocationChange={handleLocationChange}
+        history={history}
+        lang={lang}
+        messages={messages}
+      >
+        {children}
+      </BrowserIntlProvider>
+    )}
+  </InMemoryBrowserIntlProvider>
+);
