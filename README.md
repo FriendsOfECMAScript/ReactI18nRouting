@@ -13,8 +13,8 @@ There are awesome libraries that they make our life more easy building apps but,
 two parts in our projects? In this case we think that some other library is needed to join the routing and i18n systems
 so, we have created the ReactI18nRouting.
 
-This library aims to provide all the needed this to make the internationalization of the routes as easy as possible.
-We truly trust in the **Single Responsibility Patter** so, we have designed the library following the UNIX popular
+This library aims to provide all the needed to make the internationalization of the routes as easy as possible.
+We truly trust in the **Single Responsibility Pattern** so, we have designed the library following the UNIX popular
 concept:<br>*DOTADIW, or "Do One Thing and Do It Well"*.
 
 ## Installation
