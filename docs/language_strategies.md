@@ -1,26 +1,53 @@
 # Language strategies
 
-(This section is not completed)
+Your application routes system must follow a concrete strategy. At this moment, this library supports the following:
 
-All language strategies use the following API:
+* [Default unPrefixed](#default-unprefixed)
+* [Domain based](#domain-based)
 
-**`localeFromLocation(location)`**
+All language strategies exposes the same API:
 
-Resolves current locale based on [location object](https://developer.mozilla.org/en-US/docs/Web/API/Location)
+* `localeFromLocation(location)`: Resolves current locale based on [location object][1].
+* `formatIntlRoute(routeName, {locale, ...params)`: Generates route based on route name and locale (if none given,
+default will be used). Rest of parameters are passed as arguments to `formatRoute`.
+* `renderRoutes(config)`: Like ReactRouterConfig's renderRoutes, renders the tree of router from given node, but
+supporting the translations.
 
-**`formatIntlRoute(routeName, {locale, ...params)`**
+## Default unPrefixed
+Prefixes all paths with locales but the locale set as default.
 
-Generates route based on route name and locale (if none given, default will be used). Rest of parameters are passed as
-arguments to `formatRoute`
+```javascript
+import {defaultUnPrefixed} from '@foes/react-i18n-routing';
 
-Some **language strategies** are already **available**
+const locales = ['eu', 'es', 'en', 'fr'];
+const defaultLocale = 'eu';
 
-## Default unprefixed
-
-Prefixes all paths with locales but the locale set as default
+const languageStrategy = defaultUnPrefixed({routes, locales, defaultLocale});
+```
 
 ## Domain based
+Based on domain resolves current locale.
 
-Based on domain resolves current locale
+```javascript
+import {subdomainBased} from '@foes/react-i18n-routing';
+
+const locales = ['eu', 'es', 'en', 'fr'];
+const defaultLocale = 'eu';
+
+const languageStrategy = subdomainBased({
+  routes: routes,
+  locales: locales,
+  defaultLocale: defaultLocale,
+  domain: 'yourawesomecommerce.com',
+  subdomains: {
+    eu: 'denda',
+    es: 'tienda',
+    en: 'shop',
+    fr: 'boutique',
+  }
+});
+```
 
 - Back to the [index](index.md).
+
+[1]: https://developer.mozilla.org/en-US/docs/Web/API/Location 
