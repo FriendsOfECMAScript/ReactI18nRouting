@@ -64,5 +64,5 @@ export default ({routes, locales, defaultLocale, subdomains, domain}) => ({
     locales,
     routes,
     pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute),
-  ),
+  )(getLocale())(routes),
 });

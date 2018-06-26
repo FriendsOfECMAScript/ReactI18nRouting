@@ -60,5 +60,5 @@ export default ({routes, locales, defaultLocale}) => ({
     locales,
     routes,
     pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute),
-  ),
+  )(getLocale())(routes),
 });

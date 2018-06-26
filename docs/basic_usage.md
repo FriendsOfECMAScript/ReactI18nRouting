@@ -36,7 +36,7 @@ application bootstrapping.
 ```javascript
 // src/i18n/index.js
 
-import {defaultUnprefixed, getLocale} from '@foes/react-i18n-routing';
+import {defaultUnprefixed} from '@foes/react-i18n-routing';
 import {addLocaleData} from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import es from 'react-intl/locale-data/es';
@@ -61,7 +61,7 @@ export default {
   formatIntlRoute: languageStrategy.formatIntlRoute,
   localeFromLocation: languageStrategy.localeFromLocation,
   messages: {en: messagesEn, es: messagesEs, eu: messagesEu, fr: messagesFr},
-  renderRoutes: config => languageStrategy.renderRoutes(getLocale())(config),
+  renderRoutes: languageStrategy.renderRoutes,
 };
 ```
 It has been built on top of **react-router-config**, and each language strategy provides a helper to transform
