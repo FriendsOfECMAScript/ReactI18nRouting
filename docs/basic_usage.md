@@ -18,7 +18,7 @@ export default {
     en: '/news/**',
     es: '/noticia/**',
     eu: '/albistea/**',
-    fr: '/news/**',
+    fr: '/nouvelles/**',
   },
   [PAGE]: {
     en: '/page/**',
@@ -116,7 +116,7 @@ const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
 renderMethod(
   <Provider store={store}>
     <ReduxBrowserIntlProvider
-      formats={{formatIntlRoute: i18n.formatIntlRoute}}
+      formatIntlRoute={i18n.formatIntlRoute}
       history={history}
       localeFromPath={i18n.localeFromLocation}
       messages={i18n.messages}
