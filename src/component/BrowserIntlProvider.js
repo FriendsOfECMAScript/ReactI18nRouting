@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 class BrowserIntlProvider extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    formats: PropTypes.func.isRequired,
+    formats: PropTypes.object.isRequired,
     handleLocationChange: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
     isSSR: PropTypes.bool,
