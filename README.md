@@ -6,9 +6,9 @@
 [![NPM Status](http://img.shields.io/npm/dm/@foes/react-i18n-routing.svg?style=flat-square)](https://www.npmjs.org/package/@foes/react-i18n-routing)
 [![devDependency Status](https://img.shields.io/david/FriendsOfECMAScript/ReactI18nRouting.svg?style=flat-square)](https://david-dm.org/FriendsOfECMAScript/ReactI18nRouting#info=dependencies)
 
-## 🎩 &nbsp; Features
+## 🎩 Features
 
-- 🔗 Bridge [react-router][1] and [react-intl][2]
+- 🔗 Bridge between [React-Router][1] and [React-Intl][2]
 - 💡 Built-in i18n routing strategies
 - 🎛️ Multiple state handling strategies
 - 🚀 1 minute config
@@ -25,7 +25,7 @@ This library aims to provide all the needed to make the internationalization of 
 We truly trust in the **Single Responsibility Pattern** so, we have designed the library following the UNIX popular
 concept:<br>*DOTADIW, or "Do One Thing and Do It Well"*.
 
-## 📟 &nbsp; Install
+## 📟 Install
 
 The recommended and the most suitable way to install is through *Yarn*.
 ```shell
