@@ -14,7 +14,7 @@ import renderTranslatedRoutes from './../renderTranslatedRoutes.js';
 import pathFromRouteForPathsAndLocale from './pathFromRouteForPathsAndLocale.js';
 
 const localeFromLocation = (locales, defaultLocale) => location => {
-  const match = /^\/([a-z]{2}).*/g.exec(location.pathname);
+  const match = /^\/([a-z]{2})(\/|$).*/g.exec(location.pathname);
   if (match && locales.indexOf(match[1]) > -1) {
     return match[1];
   }

@@ -28,6 +28,9 @@ test('It detects locale based in location', () => {
   expect(
     languageStrategy.localeFromLocation({pathname: '/eu/some-route'}),
   ).toBe('eu');
+  expect(languageStrategy.localeFromLocation({pathname: '/estrategy'})).toBe(
+    'en',
+  );
 });
 
 test('Generates valid react-router-config tree', () => {
