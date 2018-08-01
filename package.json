@@ -52,7 +52,8 @@
     "README.md"
   ],
   "jest": {
-    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.jsx?$"
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.jsx?$",
+    "testURL": "http://localhost"
   },
   "babel": {
     "presets": [
