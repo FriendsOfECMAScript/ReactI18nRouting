@@ -29,7 +29,7 @@ test('It detects locale based in location', () => {
     languageStrategy.localeFromLocation({pathname: '/eu/some-route'}),
   ).toBe('eu');
   expect(
-    languageStrategy.localeFromLocation({pathname: '/estrategy'}),
+    languageStrategy.localeFromLocation({pathname: '/estrategy-url'}),
   ).toBe('en');
 });
 
