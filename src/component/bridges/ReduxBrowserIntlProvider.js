@@ -9,7 +9,6 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-// import {ConnectedRouter} from 'react-router-redux';
 import {ConnectedRouter} from 'connected-react-router';
 import PropTypes from 'prop-types';
 
