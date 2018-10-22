@@ -34,18 +34,18 @@ const history = createHistory();
 This strategy apart of intl provider also exposes a fully functional reducer that fires when also exposed
 `LANGUAGE_CHANGE` event is dispatched in the Redux actions.
 
+Check the [https://github.com/supasate/connected-react-router](connected-react-router) library to setup your connected router.
+
 ```javascript
 import {LANGUAGE_CHANGE} from '@foes/react-i18n-routing';
 
 // ... other module of your application
 
 import {i18nReducer} from '@foes/react-i18n-routing';
-import {routerReducer} from 'react-router-redux';
 import {combineReducers} from 'redux';
 
 export default combineReducers({
   i18n: i18nReducer,
-  routing: routerReducer,
 
 // your other reducers  
 });

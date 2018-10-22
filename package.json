@@ -1,6 +1,6 @@
 {
   "name": "@foes/react-i18n-routing",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "license": "MIT",
   "description": "Provides components and functions to make i18n routing React apps with ease.",
   "keywords": [
@@ -122,13 +122,13 @@
     "rimraf": "^2.6.2"
   },
   "peerDependencies": {
+    "connected-react-router": "^4.5.0",
     "lodash.flatmap": ">=4.x",
     "prop-types": ">=15.x",
     "react": ">=16.x",
     "react-intl": ">=2.x",
     "react-redux": ">=5.x",
     "react-router-dom": ">=4.x",
-    "react-router-named-routes": ">=0.x",
-    "react-router-redux": ">=4.x"
+    "react-router-named-routes": ">=0.x"
   }
 }
