@@ -50,6 +50,14 @@ const pathFromRoute = (paths, locale, defaultLocale) => {
     return `${localePrefix(defaultLocale)(locale)}${paths}`;
   }
 
+  const translatedPath = paths[locale];
+
+  if (Array.isArray(translatedPath)) {
+    return translatedPath.map(
+      path => `${localePrefix(defaultLocale)(locale)}${path}`,
+    );
+  }
+
   return `${localePrefix(defaultLocale)(locale)}${paths[locale]}`;
 };
 

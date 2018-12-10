@@ -5,12 +5,14 @@ in your application. In other chapters you can check more info about BrowserIntl
 to keep this tutorial simple we are going to use **ReduxBrowserIntlProvider** and **defaultUnprefixed**.
 
 First of all, we have to define our routes with their translations:
+
 ```javascript
 // src/routing/routes.js
 
 export const HOME = 'home';
 export const PAGE = 'page';
 export const POST = 'post';
+export const ARRAY_PATH_ROUTE = 'array-path-route';
 
 export default {
   [HOME]: '/',
@@ -26,12 +28,19 @@ export default {
     eu: '/orrialdea/**',
     fr: '/page/**',
   },
+  [ARRAY_PATH_ROUTE]: {
+    en: ['/page', '/news'],
+    es: ['/pagina', '/noticia'],
+    eu: ['/orrialdea', '/albistea'],
+    fr: ['/page', '/nouvelles'],
+  },
 };
 ```
+
 After that, we are ready to configure our application's i18n preferences. We need to configure our language strategy.
-The following code represents the minimum required code to make work the *defaultUnPrefixed* strategy.
-In this case we are also configuring the *react-intl* locales. This file exposes some useful methods to use in your
-application bootstrapping.  
+The following code represents the minimum required code to make work the _defaultUnPrefixed_ strategy.
+In this case we are also configuring the _react-intl_ locales. This file exposes some useful methods to use in your
+application bootstrapping.
 
 ```javascript
 // src/i18n/index.js
@@ -64,8 +73,9 @@ export default {
   renderRoutes: config => languageStrategy.renderRoutes(getLocale())(config),
 };
 ```
+
 It has been built on top of **react-router-config**, and each language strategy provides a helper to transform
-the intl routing to valid react-router-config routing. 
+the intl routing to valid react-router-config routing.
 
 ```javascript
 // src/routing/config.js
@@ -93,6 +103,7 @@ export default [
   },
 ];
 ```
+
 The following file is the entry point of your React app.
 
 ```javascript
@@ -124,7 +135,7 @@ renderMethod(
       {renderRoutes(i18n.renderRoutes(routes))}
     </ReduxBrowserIntlProvider>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 ```
 
