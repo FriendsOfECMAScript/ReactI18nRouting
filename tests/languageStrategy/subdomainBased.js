@@ -128,6 +128,15 @@ test('Generates valid react-router-config complex nested tree', () => {
         routes: [
           {
             paths: '/',
+            routes: [
+              {
+                paths: {
+                  en: '/en-test',
+                  es: '/es-test',
+                  eu: '/eu-test',
+                },
+              },
+            ],
           },
           {
             paths: {
@@ -159,10 +168,76 @@ test('Generates valid react-router-config complex nested tree', () => {
     {
       path: '/',
       routes: [
-        {path: '/'},
+        {path: '/', routes: [{path: '/en-test'}]},
         {path: '/cart'},
         {path: '/login'},
         {path: '/product/:slug'},
+        {path: '/checkout/:step?'},
+        {path: '*'},
+      ],
+    },
+  ]);
+});
+
+test('Generates valid react-router-config complex nested tree, supporting arrays as path', () => {
+  expect(
+    languageStrategy.renderRoutes('en')([
+      {
+        path: '/',
+        routes: [
+          {
+            paths: '/',
+            routes: [
+              {
+                paths: {
+                  en: '/en-test',
+                  es: '/es-test',
+                  eu: '/eu-test',
+                },
+              },
+            ],
+          },
+          {
+            paths: {
+              en: '/cart',
+              es: '/carrito',
+              eu: '/saskia',
+            },
+          },
+          {
+            paths: '/login',
+          },
+          {
+            paths: {
+              en: '/product/:slug',
+              es: '/producto/:slug',
+              eu: '/produktua/:slug',
+            },
+          },
+          {
+            paths: {
+              en: ['/product/:slug', '/products/:category'],
+              es: ['/producto/:slug', '/productos/:category'],
+              eu: ['/produktua/:slug', '/produktuak/:category'],
+            },
+          },
+          {path: '/checkout/:step?'},
+          {path: '*'},
+        ],
+      },
+    ]),
+  ).toEqual([
+    {
+      path: '/',
+      routes: [
+        {
+          path: '/',
+          routes: [{path: '/en-test'}],
+        },
+        {path: '/cart'},
+        {path: '/login'},
+        {path: '/product/:slug'},
+        {path: ['/product/:slug', '/products/:category']},
         {path: '/checkout/:step?'},
         {path: '*'},
       ],

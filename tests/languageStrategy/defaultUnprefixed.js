@@ -402,3 +402,97 @@ test('Generates valid react-router-config complex nested tree', () => {
     },
   ]);
 });
+
+test('Generates valid react-router-config complex nested tree, supporting arrays as path', () => {
+  expect(
+    languageStrategy.renderRoutes('en')([
+      {
+        path: '/',
+        routes: [
+          {
+            paths: '/',
+            routes: [
+              {
+                paths: {
+                  en: '/en-test',
+                  es: '/es-test',
+                  eu: '/eu-test',
+                },
+              },
+            ],
+          },
+          {
+            paths: {
+              en: '/cart',
+              es: '/carrito',
+              eu: '/saskia',
+            },
+          },
+          {
+            paths: '/login',
+          },
+          {
+            paths: {
+              en: '/product/:slug',
+              es: '/producto/:slug',
+              eu: '/produktua/:slug',
+            },
+          },
+          {
+            paths: {
+              en: ['/product/:slug', '/products/:category'],
+              es: ['/producto/:slug', '/productos/:category'],
+              eu: ['/produktua/:slug', '/produktuak/:category'],
+            },
+          },
+          {path: '/checkout/:step?'},
+          {path: '*'},
+        ],
+      },
+    ]),
+  ).toEqual([
+    {
+      path: '/',
+      routes: [
+        {
+          path: '/',
+          routes: [
+            {
+              path: '/en-test',
+            },
+          ],
+        },
+        {
+          path: '/es/',
+          routes: [
+            {
+              path: '/es/es-test',
+            },
+          ],
+        },
+        {
+          path: '/eu/',
+          routes: [
+            {
+              path: '/eu/eu-test',
+            },
+          ],
+        },
+        {path: '/cart'},
+        {path: '/es/carrito'},
+        {path: '/eu/saskia'},
+        {path: '/login'},
+        {path: '/es/login'},
+        {path: '/eu/login'},
+        {path: '/product/:slug'},
+        {path: '/es/producto/:slug'},
+        {path: '/eu/produktua/:slug'},
+        {path: ['/product/:slug', '/products/:category']},
+        {path: ['/es/producto/:slug', '/es/productos/:category']},
+        {path: ['/eu/produktua/:slug', '/eu/produktuak/:category']},
+        {path: '/checkout/:step?'},
+        {path: '*'},
+      ],
+    },
+  ]);
+});
