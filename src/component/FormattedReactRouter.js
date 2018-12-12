@@ -9,10 +9,10 @@
 
 import React from 'react';
 import {Link, NavLink, Redirect} from 'react-router-dom';
-import {withI18nRouting} from './component/I18nRouting';
+import withI18nRouting from './withI18nRouting';
 
 export const FormattedLink = withI18nRouting(({name, params, i18nRouting, ...rest}) => (
-  <Link to={i18nRouting.formatI8ntlRoute(name, params, i18nRouting.locale)} {...rest} />
+  <Link to={i18nRouting.formatIntlRoute(name, params, i18nRouting.locale)} {...rest} />
 ));
 
 export const FormattedNavLink = withI18nRouting(({name, params, i18nRouting, ...rest}) => (

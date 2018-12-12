@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import I18nRoutingContext from '../I18nRoutingContext';
+import I18nRoutingContext from './I18nRoutingContext';
 
 class I18nRoutingProvider extends React.Component {
   state = {
@@ -49,6 +49,9 @@ class I18nRoutingProvider extends React.Component {
   }
 
   setTranslatedRoutes(translatedRoutes) {
+    if (translatedRoutes.en === this.state.translatedRoutes.en) {
+      return {};
+    }
     this.setState({translatedRoutes});
   }
 
@@ -59,13 +62,13 @@ class I18nRoutingProvider extends React.Component {
       ...location,
       hostname: typeof window !== 'undefined' ? window.location.hostname : '',
     });
-    this.setState({locale: locale, translatedRoutes: this.props.defaultTranslatedRoutes});
+    this.setState({locale, translatedRoutes: this.props.defaultTranslatedRoutes});
   };
 
   render() {
     return (
       <I18nRoutingContext.Provider value={this.state}>
-        {this.props.children(this.state.locale)}
+        {this.props.children}
       </I18nRoutingContext.Provider>
     );
   }
