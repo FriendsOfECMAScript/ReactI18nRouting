@@ -9,66 +9,16 @@
 
 import React from 'react';
 import {Link, NavLink, Redirect} from 'react-router-dom';
-import {injectIntl} from 'react-intl';
+import {withI18nRouting} from './component/I18nRouting';
 
-const FormattedRouter = ({intl, children}) => {
-  if (!intl.formats.formatIntlRoute) {
-    throw new Error(
-      'LanguageStrategy formatter is missing, pass formatIntlRoute ' +
-        'as parameter to IntlProvider or to BrowserIntlProvider',
-    );
-  }
+export const FormattedLink = withI18nRouting(({name, params, i18nRouting, ...rest}) => (
+  <Link to={i18nRouting.formatI8ntlRoute(name, params, i18nRouting.locale)} {...rest} />
+));
 
-  return children;
-};
+export const FormattedNavLink = withI18nRouting(({name, params, i18nRouting, ...rest}) => (
+  <NavLink to={i18nRouting.formatIntlRoute(name, params, i18nRouting.locale)} {...rest} />
+));
 
-export const FormattedLink = injectIntl(
-  ({name, params, intl, locale, ...rest}) => {
-    return (
-      <FormattedRouter intl={intl}>
-        <Link
-          to={intl.formats.formatIntlRoute(
-            name,
-            params,
-            locale ? locale : intl.locale,
-          )}
-          {...rest}
-        />
-      </FormattedRouter>
-    );
-  },
-);
-
-export const FormattedNavLink = injectIntl(
-  ({name, params, intl, locale, ...rest}) => {
-    return (
-      <FormattedRouter intl={intl}>
-        <NavLink
-          to={intl.formats.formatIntlRoute(
-            name,
-            params,
-            locale ? locale : intl.locale,
-          )}
-          {...rest}
-        />
-      </FormattedRouter>
-    );
-  },
-);
-
-export const FormattedRedirect = injectIntl(
-  ({name, params, intl, locale, ...rest}) => {
-    return (
-      <FormattedRouter intl={intl}>
-        <Redirect
-          to={intl.formats.formatIntlRoute(
-            name,
-            params,
-            locale ? locale : intl.locale,
-          )}
-          {...rest}
-        />
-      </FormattedRouter>
-    );
-  },
-);
+export const FormattedRedirect = withI18nRouting(({name, params, i18nRouting, ...rest}) => (
+  <Redirect to={i18nRouting.formatIntlRoute(name, params, i18nRouting.locale)} {...rest} />
+));
