@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import I18nRoutingContext from './I18nRoutingContext';
 
 class I18nRoutingProvider extends React.Component {
-  state = {
-    locale: null,
-  };
-
   constructor(props) {
     super(props);
 
@@ -20,13 +16,6 @@ class I18nRoutingProvider extends React.Component {
       }),
       translatedRoutes: props.defaultTranslatedRoutes || {},
       setTranslatedRoutes: this.setTranslatedRoutes.bind(this),
-    };
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    return {
-      ...state,
-      formatIntlRoute: props.formatIntlRoute,
     };
   }
 
@@ -70,7 +59,7 @@ class I18nRoutingProvider extends React.Component {
 
   render() {
     return (
-      <I18nRoutingContext.Provider value={this.state}>
+      <I18nRoutingContext.Provider value={{formatIntlRoute: this.props.formatIntlRoute, ...this.state}}>
         {this.props.children}
       </I18nRoutingContext.Provider>
     );
