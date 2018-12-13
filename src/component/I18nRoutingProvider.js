@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEqual from "lodash.isequal";
 
 import I18nRoutingContext from './I18nRoutingContext';
 
@@ -38,8 +39,8 @@ class I18nRoutingProvider extends React.Component {
   }
 
   setTranslatedRoutes(translatedRoutes) {
-    if (translatedRoutes.en === this.state.translatedRoutes.en) {
-      return {};
+    if (isEqual(translatedRoutes, this.state.translatedRoutes)) {
+      return;
     }
     this.setState({translatedRoutes});
   }
