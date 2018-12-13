@@ -124,13 +124,10 @@
     "rimraf": "^2.6.2"
   },
   "peerDependencies": {
-    "connected-react-router": "^4.5.0",
     "lodash.flatmap": ">=4.x",
     "prop-types": ">=15.x",
     "react": ">=16.3.0",
     "react-dom": ">16.3.0",
-    "react-intl": ">=2.x",
-    "react-redux": ">=5.x",
     "react-router-dom": ">=4.x",
     "react-router-named-routes": ">=0.x"
   }
