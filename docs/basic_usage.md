@@ -1,8 +1,7 @@
 # Basic usage
 
-Because this library has multiple points, this section provides a simple cookbook to make work the ReactI18nRouting
-in your application. In other chapters you can check more info about BrowserIntlProvider and language strategies, but
-to keep this tutorial simple we are going to use **ReduxBrowserIntlProvider** and **defaultUnprefixed**.
+Because this library has multiple points, this section provides a simple cookbook to get started with ReactI18nRouting
+in your application. 
 
 First of all, we have to define our routes with their translations:
 
@@ -34,43 +33,6 @@ export default {
     eu: ['/orrialdea', '/albistea'],
     fr: ['/page', '/nouvelles'],
   },
-};
-```
-
-After that, we are ready to configure our application's i18n preferences. We need to configure our language strategy.
-The following code represents the minimum required code to make work the _defaultUnPrefixed_ strategy.
-In this case we are also configuring the _react-intl_ locales. This file exposes some useful methods to use in your
-application bootstrapping.
-
-```javascript
-// src/i18n/index.js
-
-import {defaultUnprefixed, getLocale} from '@foes/react-i18n-routing';
-import {addLocaleData} from 'react-intl';
-import en from 'react-intl/locale-data/en';
-import es from 'react-intl/locale-data/es';
-import eu from 'react-intl/locale-data/eu';
-import fr from 'react-intl/locale-data/fr';
-
-import routes from './../routing/routes';
-
-// There are simple json files with the language strings
-import messagesEn from './messages/en.json';
-import messagesEs from './messages/es.json';
-import messagesEu from './messages/eu.json';
-import messagesFr from './messages/fr.json';
-
-addLocaleData([...en, ...es, ...eu, ...fr]);
-
-const locales = ['eu', 'es', 'en', 'fr'];
-const defaultLocale = 'eu';
-const languageStrategy = defaultUnprefixed({routes, locales, defaultLocale});
-
-export default {
-  formatIntlRoute: languageStrategy.formatIntlRoute,
-  localeFromLocation: languageStrategy.localeFromLocation,
-  messages: {en: messagesEn, es: messagesEs, eu: messagesEu, fr: messagesFr},
-  renderRoutes: config => languageStrategy.renderRoutes(getLocale())(config),
 };
 ```
 
@@ -111,34 +73,34 @@ The following file is the entry point of your React app.
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {renderRoutes} from 'react-router-config';
-import {ReduxBrowserIntlProvider} from '@foes/react-i18n-routing';
+import {I18nRoutingProvider} from '@foes/react-i18n-routing';
 import createHistory from 'history/createBrowserHistory';
 
-// There are previously implemented files
+import routes from './routing/config';
+
+// These are previously implemented files
 import i18n from './i18n/index.js';
 import routes from './routing/routes.js';
 
 const history = createHistory();
 
-const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
+const languageStrategy = defaultUnprefixed({routes: routes, locales: ['eu', 'es', 'en', 'fr'], defaultLocale: 'es'});
+const renderRoutes = (locale, config) => languageStrategy.renderRoutes(locale)(config),
+const LocaleContext = withI18nRouting(({i18nRouting, children}) => children(i18nRouting.locale));
 
-renderMethod(
-  <Provider store={store}>
-    <ReduxBrowserIntlProvider
-      formatIntlRoute={i18n.formatIntlRoute}
-      history={history}
-      localeFromPath={i18n.localeFromLocation}
-      messages={i18n.messages}
-    >
-      {renderRoutes(i18n.renderRoutes(routes))}
-    </ReduxBrowserIntlProvider>
-  </Provider>,
+ReactDOM.render(
+  <I18nRoutingProvider
+    defaultTranslatedRoutes={{es: '/es', en: '/'}}
+    formatIntlRoute={languageStrategy.formatIntlRoute}
+    history={history}
+    localeFromPath={languageStrategy.localeFromLocation}>
+    <LocaleContext>
+      {locale => renderRoutes(locale, routes)}
+    </LocaleContext>
+  </I18nRoutingProvider>
   document.getElementById('root')
 );
 ```
 
-- For more information about browser intl provider strategies check [this guide](browser_intl_provider_strategies.md).
 - In order to need more info about language strategies check [this guide](language_strategies.md).
 - Back to the [index](index.md).
