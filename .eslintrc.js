@@ -21,7 +21,7 @@ module.exports = {
       'templateStrings': true,
     },
   },
-  'plugins': ['react', 'class-property', 'babel'],
+  'plugins': ['react', 'class-property', 'babel', 'prettier'],
   'rules': {
     'arrow-body-style': 'off',
     'indent': ['error', 2, {'SwitchCase': 1}],
@@ -198,5 +198,6 @@ module.exports = {
     'react/sort-comp': 'off',
     'react/sort-prop-types': 'error',
     'react/wrap-multilines': 'off',
+    'prettier/prettier': 'error'
   },
 };
