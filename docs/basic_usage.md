@@ -79,7 +79,6 @@ import createHistory from 'history/createBrowserHistory';
 import routes from './routing/config';
 
 // These are previously implemented files
-import i18n from './i18n/index.js';
 import routes from './routing/routes.js';
 
 const history = createHistory();
@@ -88,16 +87,19 @@ const languageStrategy = defaultUnprefixed({routes: routes, locales: ['eu', 'es'
 const renderRoutes = (locale, config) => languageStrategy.renderRoutes(locale)(config),
 const LocaleContext = withI18nRouting(({i18nRouting, children}) => children(i18nRouting.locale));
 
-ReactDOM.render(
+const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
+
+renderMethod(
   <I18nRoutingProvider
     defaultTranslatedRoutes={{es: '/es', en: '/'}}
     formatIntlRoute={languageStrategy.formatIntlRoute}
     history={history}
-    localeFromPath={languageStrategy.localeFromLocation}>
+    localeFromPath={languageStrategy.localeFromLocation}
+  >
     <LocaleContext>
       {locale => renderRoutes(locale, routes)}
     </LocaleContext>
-  </I18nRoutingProvider>
+  </I18nRoutingProvider>,
   document.getElementById('root')
 );
 ```
