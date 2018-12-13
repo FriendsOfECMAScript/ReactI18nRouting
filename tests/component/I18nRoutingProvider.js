@@ -6,30 +6,31 @@ import I18nRoutingProvider from '../../src/component/I18nRoutingProvider';
 import withI18nRouting from '../../src/component/withI18nRouting';
 import defaultUnprefixed from '../../src/languageStrategy/defaultUnprefixed';
 
-const languageStrategy = defaultUnprefixed(
-  {
-    routes: [],
-    locales: ['en', 'es', 'fr'],
-    defaultLocale: 'en'
-  }
-);
+const languageStrategy = defaultUnprefixed({
+  routes: [],
+  locales: ['en', 'es', 'fr'],
+  defaultLocale: 'en',
+});
 
 const Base = ({children, history}) => (
   <I18nRoutingProvider
     defaultTranslatedRoutes={{es: '/es', en: '/'}}
     formatIntlRoute={languageStrategy.formatIntlRoute}
     history={history}
-    localeFromPath={languageStrategy.localeFromLocation}>
+    localeFromPath={languageStrategy.localeFromLocation}
+  >
     {children}
   </I18nRoutingProvider>
 );
 
 test('It exposes locale as render prop', () => {
-  const Component = withI18nRouting(({i18nRouting}) => <span data-testid="locale">{i18nRouting.locale}</span>);
+  const Component = withI18nRouting(({i18nRouting}) => (
+    <span data-testid="locale">{i18nRouting.locale}</span>
+  ));
   const {getByTestId} = render(
     <Base history={createHistory({initialEntries: ['/en']})}>
-      <Component/>
-    </Base>
+      <Component />
+    </Base>,
   );
 
   expect(getByTestId('locale').textContent).toBe('en');
@@ -40,15 +41,18 @@ test('It updates locale on history change', () => {
     initialEntries: ['/en'],
   });
 
-  const Component = withI18nRouting(({i18nRouting}) => <span data-testid="locale">{i18nRouting.locale}</span>);
+  const Component = withI18nRouting(({i18nRouting}) => (
+    <span data-testid="locale">{i18nRouting.locale}</span>
+  ));
 
   const {getByTestId, rerender} = render(
     <Base
       formatIntlRoute={languageStrategy.formatIntlRoute}
       history={history}
-      localeFromPath={languageStrategy.localeFromLocation}>
-      <Component/>
-    </Base>
+      localeFromPath={languageStrategy.localeFromLocation}
+    >
+      <Component />
+    </Base>,
   );
 
   expect(getByTestId('locale').textContent).toBe('en');
@@ -59,9 +63,10 @@ test('It updates locale on history change', () => {
     <I18nRoutingProvider
       formatIntlRoute={languageStrategy.formatIntlRoute}
       history={history}
-      localeFromPath={languageStrategy.localeFromLocation}>
-      <Component/>
-    </I18nRoutingProvider>
+      localeFromPath={languageStrategy.localeFromLocation}
+    >
+      <Component />
+    </I18nRoutingProvider>,
   );
 
   expect(getByTestId('locale').textContent).toBe('es');
@@ -69,19 +74,21 @@ test('It updates locale on history change', () => {
 
 test('It sets translated routes', () => {
   const Component = ({i18nRouting}) => {
-    i18nRouting.setTranslatedRoutes({'es': '/es/ejemplo', 'en': '/example'});
+    i18nRouting.setTranslatedRoutes({es: '/es/ejemplo', en: '/example'});
 
-    return Object.keys(i18nRouting.translatedRoutes).map(key =>
-      <span data-testid={`link-${key}`} key={key}>{i18nRouting.translatedRoutes[key]}</span>
-    );
+    return Object.keys(i18nRouting.translatedRoutes).map(key => (
+      <span data-testid={`link-${key}`} key={key}>
+        {i18nRouting.translatedRoutes[key]}
+      </span>
+    ));
   };
 
   const ComponentWithI18nRouting = withI18nRouting(Component);
 
   const {getByTestId} = render(
     <Base history={createHistory({initialEntries: ['/en']})}>
-      <ComponentWithI18nRouting/>
-    </Base>
+      <ComponentWithI18nRouting />
+    </Base>,
   );
 
   expect(getByTestId('link-es').textContent).toBe('/es/ejemplo');

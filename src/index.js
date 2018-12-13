@@ -18,7 +18,6 @@ import defaultUnPrefixed from './languageStrategy/defaultUnprefixed.js';
 import subdomainBased from './languageStrategy/subdomainBased.js';
 import renderTranslatedRoutes from './renderTranslatedRoutes.js';
 
-
 export {
   FormattedLink,
   FormattedNavLink,

@@ -62,7 +62,10 @@ class I18nRoutingProvider extends React.Component {
       ...location,
       hostname: typeof window !== 'undefined' ? window.location.hostname : '',
     });
-    this.setState({locale, translatedRoutes: this.props.defaultTranslatedRoutes});
+    this.setState({
+      locale,
+      translatedRoutes: this.props.defaultTranslatedRoutes,
+    });
   };
 
   render() {
