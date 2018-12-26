@@ -78,9 +78,6 @@ import createHistory from 'history/createBrowserHistory';
 
 import routes from './routing/config';
 
-// These are previously implemented files
-import routes from './routing/routes.js';
-
 const history = createHistory();
 
 const languageStrategy = defaultUnprefixed({routes: routes, locales: ['eu', 'es', 'en', 'fr'], defaultLocale: 'es'});
