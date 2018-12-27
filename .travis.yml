@@ -22,7 +22,7 @@ install:
 script:
     - npm test -- --coverage
     - node_modules/.bin/eslint -c .eslintrc.js src/ tests
-    - node_modules/.bin/prettier 'src/**/*.js' 'tests/**/*.js' --list-different --single-quote --no-bracket-spacing --trailing-comma all
+    - node_modules/.bin/prettier 'src/**/*.js' 'tests/**/*.js' --list-different all
 
 cache:
     directories:
