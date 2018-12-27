@@ -7,492 +7,492 @@
  * file that was distributed with this source code.
  */
 
-import React from 'react';
+import React from "react";
 
-import defaultUnprefixed from './../../src/languageStrategy/defaultUnprefixed.js';
+import defaultUnprefixed from "./../../src/languageStrategy/defaultUnprefixed.js";
 
 const DummyComponent = () => <div />;
 
 const languageStrategy = defaultUnprefixed({
-  locales: ['en', 'es', 'eu'],
-  defaultLocale: 'en',
+  locales: ["en", "es", "eu"],
+  defaultLocale: "en"
 });
 
-test('It detects locale based in location', () => {
-  expect(languageStrategy.localeFromLocation({pathname: '/some-route'})).toBe(
-    'en',
+test("It detects locale based in location", () => {
+  expect(languageStrategy.localeFromLocation({ pathname: "/some-route" })).toBe(
+    "en"
   );
   expect(
-    languageStrategy.localeFromLocation({pathname: '/es/some-route'}),
-  ).toBe('es');
+    languageStrategy.localeFromLocation({ pathname: "/es/some-route" })
+  ).toBe("es");
   expect(
-    languageStrategy.localeFromLocation({pathname: '/eu/some-route'}),
-  ).toBe('eu');
+    languageStrategy.localeFromLocation({ pathname: "/eu/some-route" })
+  ).toBe("eu");
   expect(
-    languageStrategy.localeFromLocation({pathname: '/estrategy-url'}),
-  ).toBe('en');
+    languageStrategy.localeFromLocation({ pathname: "/estrategy-url" })
+  ).toBe("en");
 });
 
-test('Generates valid react-router-config tree', () => {
+test("Generates valid react-router-config tree", () => {
   expect(
-    languageStrategy.renderRoutes('en')([
+    languageStrategy.renderRoutes("en")([
       {
         paths: {
-          en: '/product/:slug',
-          es: '/producto/:slug',
-          eu: '/produktua/:slug',
+          en: "/product/:slug",
+          es: "/producto/:slug",
+          eu: "/produktua/:slug"
         },
-        component: DummyComponent,
+        component: DummyComponent
       },
       {
         paths: {
-          en: '/cart',
-          es: '/carrito',
-          eu: '/saskia',
+          en: "/cart",
+          es: "/carrito",
+          eu: "/saskia"
         },
-        component: DummyComponent,
+        component: DummyComponent
       },
       {
-        path: '/',
+        path: "/",
         component: DummyComponent,
-        exact: true,
-      },
-    ]),
+        exact: true
+      }
+    ])
   ).toEqual([
     {
-      path: '/product/:slug',
-      component: DummyComponent,
+      path: "/product/:slug",
+      component: DummyComponent
     },
     {
-      path: '/es/producto/:slug',
-      component: DummyComponent,
+      path: "/es/producto/:slug",
+      component: DummyComponent
     },
     {
-      path: '/eu/produktua/:slug',
-      component: DummyComponent,
+      path: "/eu/produktua/:slug",
+      component: DummyComponent
     },
     {
-      path: '/cart',
-      component: DummyComponent,
+      path: "/cart",
+      component: DummyComponent
     },
     {
-      path: '/es/carrito',
-      component: DummyComponent,
+      path: "/es/carrito",
+      component: DummyComponent
     },
     {
-      path: '/eu/saskia',
-      component: DummyComponent,
+      path: "/eu/saskia",
+      component: DummyComponent
     },
     {
-      path: '/',
+      path: "/",
       component: DummyComponent,
-      exact: true,
-    },
+      exact: true
+    }
   ]);
 });
 
-test('Generates valid react-router-config nested tree', () => {
+test("Generates valid react-router-config nested tree", () => {
   expect(
-    languageStrategy.renderRoutes('en')([
+    languageStrategy.renderRoutes("en")([
       {
-        path: '/',
+        path: "/",
         component: DummyComponent,
         routes: [
           {
             paths: {
-              en: '/product/:slug',
-              es: '/producto/:slug',
-              eu: '/produktua/:slug',
+              en: "/product/:slug",
+              es: "/producto/:slug",
+              eu: "/produktua/:slug"
             },
-            component: DummyComponent,
+            component: DummyComponent
           },
           {
             paths: {
-              en: '/cart',
-              es: '/carrito',
-              eu: '/saskia',
+              en: "/cart",
+              es: "/carrito",
+              eu: "/saskia"
             },
-            component: DummyComponent,
+            component: DummyComponent
           },
           {
-            path: '/',
+            path: "/",
             component: DummyComponent,
-            exact: true,
-          },
-        ],
-      },
-    ]),
+            exact: true
+          }
+        ]
+      }
+    ])
   ).toEqual([
     {
-      path: '/',
+      path: "/",
       component: DummyComponent,
       routes: [
         {
-          path: '/product/:slug',
-          component: DummyComponent,
+          path: "/product/:slug",
+          component: DummyComponent
         },
         {
-          path: '/es/producto/:slug',
-          component: DummyComponent,
+          path: "/es/producto/:slug",
+          component: DummyComponent
         },
         {
-          path: '/eu/produktua/:slug',
-          component: DummyComponent,
+          path: "/eu/produktua/:slug",
+          component: DummyComponent
         },
         {
-          path: '/cart',
-          component: DummyComponent,
+          path: "/cart",
+          component: DummyComponent
         },
         {
-          path: '/es/carrito',
-          component: DummyComponent,
+          path: "/es/carrito",
+          component: DummyComponent
         },
         {
-          path: '/eu/saskia',
-          component: DummyComponent,
+          path: "/eu/saskia",
+          component: DummyComponent
         },
         {
-          path: '/',
+          path: "/",
           component: DummyComponent,
-          exact: true,
-        },
-      ],
-    },
+          exact: true
+        }
+      ]
+    }
   ]);
 });
 
-test('Generates valid react-router-config deeply nested tree', () => {
+test("Generates valid react-router-config deeply nested tree", () => {
   expect(
-    languageStrategy.renderRoutes('en')([
+    languageStrategy.renderRoutes("en")([
       {
-        path: '/',
+        path: "/",
         component: DummyComponent,
         exact: false,
         routes: [
           {
             paths: {
-              en: '/product/:slug',
-              es: '/producto/:slug',
-              eu: '/produktua/:slug',
+              en: "/product/:slug",
+              es: "/producto/:slug",
+              eu: "/produktua/:slug"
             },
             component: DummyComponent,
             exact: false,
             routes: [
               {
                 paths: {
-                  en: '/product/:slug/edit',
-                  es: '/producto/:slug/editar',
-                  eu: '/produktua/:slug/aldatu',
+                  en: "/product/:slug/edit",
+                  es: "/producto/:slug/editar",
+                  eu: "/produktua/:slug/aldatu"
                 },
                 component: DummyComponent,
-                exact: true,
+                exact: true
               },
               {
                 paths: {
-                  en: '/product/:slug/view',
-                  es: '/producto/:slug/ver',
-                  eu: '/produktua/:slug/ikusi',
+                  en: "/product/:slug/view",
+                  es: "/producto/:slug/ver",
+                  eu: "/produktua/:slug/ikusi"
                 },
                 component: DummyComponent,
-                exact: true,
+                exact: true
               },
               {
                 paths: {
-                  en: '/product/:slug/comments/:comment',
-                  es: '/producto/:slug/comentarios/:comment',
-                  eu: '/produktua/:slug/iruzkinak/:comment',
+                  en: "/product/:slug/comments/:comment",
+                  es: "/producto/:slug/comentarios/:comment",
+                  eu: "/produktua/:slug/iruzkinak/:comment"
                 },
                 component: DummyComponent,
                 exact: false,
                 routes: [
                   {
                     paths: {
-                      en: '/product/:slug/comments/:comment/edit',
-                      es: '/producto/:slug/comentarios/:comment/editar',
-                      eu: '/produktua/:slug/iruzkinak/:comment/aldatu',
+                      en: "/product/:slug/comments/:comment/edit",
+                      es: "/producto/:slug/comentarios/:comment/editar",
+                      eu: "/produktua/:slug/iruzkinak/:comment/aldatu"
                     },
                     component: DummyComponent,
-                    exact: true,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ]),
+                    exact: true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ])
   ).toEqual([
     {
-      path: '/',
+      path: "/",
       component: DummyComponent,
       exact: false,
       routes: [
         {
-          path: '/product/:slug',
+          path: "/product/:slug",
           component: DummyComponent,
           exact: false,
           routes: [
             {
-              path: '/product/:slug/edit',
+              path: "/product/:slug/edit",
               component: DummyComponent,
-              exact: true,
+              exact: true
             },
             {
-              path: '/product/:slug/view',
+              path: "/product/:slug/view",
               component: DummyComponent,
-              exact: true,
+              exact: true
             },
             {
-              path: '/product/:slug/comments/:comment',
+              path: "/product/:slug/comments/:comment",
               component: DummyComponent,
               exact: false,
               routes: [
                 {
-                  path: '/product/:slug/comments/:comment/edit',
+                  path: "/product/:slug/comments/:comment/edit",
                   component: DummyComponent,
-                  exact: true,
-                },
-              ],
-            },
-          ],
+                  exact: true
+                }
+              ]
+            }
+          ]
         },
         {
-          path: '/es/producto/:slug',
+          path: "/es/producto/:slug",
           component: DummyComponent,
           exact: false,
           routes: [
             {
-              path: '/es/producto/:slug/editar',
+              path: "/es/producto/:slug/editar",
               component: DummyComponent,
-              exact: true,
+              exact: true
             },
             {
-              path: '/es/producto/:slug/ver',
+              path: "/es/producto/:slug/ver",
               component: DummyComponent,
-              exact: true,
+              exact: true
             },
             {
-              path: '/es/producto/:slug/comentarios/:comment',
+              path: "/es/producto/:slug/comentarios/:comment",
               component: DummyComponent,
               exact: false,
               routes: [
                 {
-                  path: '/es/producto/:slug/comentarios/:comment/editar',
+                  path: "/es/producto/:slug/comentarios/:comment/editar",
                   component: DummyComponent,
-                  exact: true,
-                },
-              ],
-            },
-          ],
+                  exact: true
+                }
+              ]
+            }
+          ]
         },
         {
-          path: '/eu/produktua/:slug',
+          path: "/eu/produktua/:slug",
           component: DummyComponent,
           exact: false,
           routes: [
             {
-              path: '/eu/produktua/:slug/aldatu',
+              path: "/eu/produktua/:slug/aldatu",
               component: DummyComponent,
-              exact: true,
+              exact: true
             },
             {
-              path: '/eu/produktua/:slug/ikusi',
+              path: "/eu/produktua/:slug/ikusi",
               component: DummyComponent,
-              exact: true,
+              exact: true
             },
             {
-              path: '/eu/produktua/:slug/iruzkinak/:comment',
+              path: "/eu/produktua/:slug/iruzkinak/:comment",
               component: DummyComponent,
               exact: false,
               routes: [
                 {
-                  path: '/eu/produktua/:slug/iruzkinak/:comment/aldatu',
+                  path: "/eu/produktua/:slug/iruzkinak/:comment/aldatu",
                   component: DummyComponent,
-                  exact: true,
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
+                  exact: true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   ]);
 });
 
-test('Generates valid react-router-config complex nested tree', () => {
+test("Generates valid react-router-config complex nested tree", () => {
   expect(
-    languageStrategy.renderRoutes('en')([
+    languageStrategy.renderRoutes("en")([
       {
-        path: '/',
+        path: "/",
         routes: [
           {
-            paths: '/',
+            paths: "/",
             routes: [
               {
                 paths: {
-                  en: '/en-test',
-                  es: '/es-test',
-                  eu: '/eu-test',
-                },
-              },
-            ],
+                  en: "/en-test",
+                  es: "/es-test",
+                  eu: "/eu-test"
+                }
+              }
+            ]
           },
           {
             paths: {
-              en: '/cart',
-              es: '/carrito',
-              eu: '/saskia',
-            },
+              en: "/cart",
+              es: "/carrito",
+              eu: "/saskia"
+            }
           },
           {
-            paths: '/login',
+            paths: "/login"
           },
           {
             paths: {
-              en: '/product/:slug',
-              es: '/producto/:slug',
-              eu: '/produktua/:slug',
-            },
+              en: "/product/:slug",
+              es: "/producto/:slug",
+              eu: "/produktua/:slug"
+            }
           },
-          {path: '/checkout/:step?'},
-          {path: '*'},
-        ],
-      },
-    ]),
+          { path: "/checkout/:step?" },
+          { path: "*" }
+        ]
+      }
+    ])
   ).toEqual([
     {
-      path: '/',
+      path: "/",
       routes: [
         {
-          path: '/',
+          path: "/",
           routes: [
             {
-              path: '/en-test',
-            },
-          ],
+              path: "/en-test"
+            }
+          ]
         },
         {
-          path: '/es/',
+          path: "/es/",
           routes: [
             {
-              path: '/es/es-test',
-            },
-          ],
+              path: "/es/es-test"
+            }
+          ]
         },
         {
-          path: '/eu/',
+          path: "/eu/",
           routes: [
             {
-              path: '/eu/eu-test',
-            },
-          ],
+              path: "/eu/eu-test"
+            }
+          ]
         },
-        {path: '/cart'},
-        {path: '/es/carrito'},
-        {path: '/eu/saskia'},
-        {path: '/login'},
-        {path: '/es/login'},
-        {path: '/eu/login'},
-        {path: '/product/:slug'},
-        {path: '/es/producto/:slug'},
-        {path: '/eu/produktua/:slug'},
-        {path: '/checkout/:step?'},
-        {path: '*'},
-      ],
-    },
+        { path: "/cart" },
+        { path: "/es/carrito" },
+        { path: "/eu/saskia" },
+        { path: "/login" },
+        { path: "/es/login" },
+        { path: "/eu/login" },
+        { path: "/product/:slug" },
+        { path: "/es/producto/:slug" },
+        { path: "/eu/produktua/:slug" },
+        { path: "/checkout/:step?" },
+        { path: "*" }
+      ]
+    }
   ]);
 });
 
-test('Generates valid react-router-config complex nested tree, supporting arrays as path', () => {
+test("Generates valid react-router-config complex nested tree, supporting arrays as path", () => {
   expect(
-    languageStrategy.renderRoutes('en')([
+    languageStrategy.renderRoutes("en")([
       {
-        path: '/',
+        path: "/",
         routes: [
           {
-            paths: '/',
+            paths: "/",
             routes: [
               {
                 paths: {
-                  en: '/en-test',
-                  es: '/es-test',
-                  eu: '/eu-test',
-                },
-              },
-            ],
+                  en: "/en-test",
+                  es: "/es-test",
+                  eu: "/eu-test"
+                }
+              }
+            ]
           },
           {
             paths: {
-              en: '/cart',
-              es: '/carrito',
-              eu: '/saskia',
-            },
+              en: "/cart",
+              es: "/carrito",
+              eu: "/saskia"
+            }
           },
           {
-            paths: '/login',
-          },
-          {
-            paths: {
-              en: '/product/:slug',
-              es: '/producto/:slug',
-              eu: '/produktua/:slug',
-            },
+            paths: "/login"
           },
           {
             paths: {
-              en: ['/product/:slug', '/products/:category'],
-              es: ['/producto/:slug', '/productos/:category'],
-              eu: ['/produktua/:slug', '/produktuak/:category'],
-            },
+              en: "/product/:slug",
+              es: "/producto/:slug",
+              eu: "/produktua/:slug"
+            }
           },
-          {path: '/checkout/:step?'},
-          {path: '*'},
-        ],
-      },
-    ]),
+          {
+            paths: {
+              en: ["/product/:slug", "/products/:category"],
+              es: ["/producto/:slug", "/productos/:category"],
+              eu: ["/produktua/:slug", "/produktuak/:category"]
+            }
+          },
+          { path: "/checkout/:step?" },
+          { path: "*" }
+        ]
+      }
+    ])
   ).toEqual([
     {
-      path: '/',
+      path: "/",
       routes: [
         {
-          path: '/',
+          path: "/",
           routes: [
             {
-              path: '/en-test',
-            },
-          ],
+              path: "/en-test"
+            }
+          ]
         },
         {
-          path: '/es/',
+          path: "/es/",
           routes: [
             {
-              path: '/es/es-test',
-            },
-          ],
+              path: "/es/es-test"
+            }
+          ]
         },
         {
-          path: '/eu/',
+          path: "/eu/",
           routes: [
             {
-              path: '/eu/eu-test',
-            },
-          ],
+              path: "/eu/eu-test"
+            }
+          ]
         },
-        {path: '/cart'},
-        {path: '/es/carrito'},
-        {path: '/eu/saskia'},
-        {path: '/login'},
-        {path: '/es/login'},
-        {path: '/eu/login'},
-        {path: '/product/:slug'},
-        {path: '/es/producto/:slug'},
-        {path: '/eu/produktua/:slug'},
-        {path: ['/product/:slug', '/products/:category']},
-        {path: ['/es/producto/:slug', '/es/productos/:category']},
-        {path: ['/eu/produktua/:slug', '/eu/produktuak/:category']},
-        {path: '/checkout/:step?'},
-        {path: '*'},
-      ],
-    },
+        { path: "/cart" },
+        { path: "/es/carrito" },
+        { path: "/eu/saskia" },
+        { path: "/login" },
+        { path: "/es/login" },
+        { path: "/eu/login" },
+        { path: "/product/:slug" },
+        { path: "/es/producto/:slug" },
+        { path: "/eu/produktua/:slug" },
+        { path: ["/product/:slug", "/products/:category"] },
+        { path: ["/es/producto/:slug", "/es/productos/:category"] },
+        { path: ["/eu/produktua/:slug", "/eu/produktuak/:category"] },
+        { path: "/checkout/:step?" },
+        { path: "*" }
+      ]
+    }
   ]);
 });

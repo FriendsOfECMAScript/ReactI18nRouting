@@ -1,20 +1,20 @@
-import React from 'react';
-import {render} from 'react-testing-library';
-import createHistory from 'history/createMemoryHistory';
+import React from "react";
+import { render } from "react-testing-library";
+import createHistory from "history/createMemoryHistory";
 
-import I18nRoutingProvider from '../../src/component/I18nRoutingProvider';
-import withI18nRouting from '../../src/component/withI18nRouting';
-import defaultUnprefixed from '../../src/languageStrategy/defaultUnprefixed';
+import I18nRoutingProvider from "../../src/component/I18nRoutingProvider";
+import withI18nRouting from "../../src/component/withI18nRouting";
+import defaultUnprefixed from "../../src/languageStrategy/defaultUnprefixed";
 
 const languageStrategy = defaultUnprefixed({
   routes: [],
-  locales: ['en', 'es', 'fr'],
-  defaultLocale: 'en',
+  locales: ["en", "es", "fr"],
+  defaultLocale: "en"
 });
 
-const Base = ({children, history}) => (
+const Base = ({ children, history }) => (
   <I18nRoutingProvider
-    defaultTranslatedRoutes={{es: '/es', en: '/'}}
+    defaultTranslatedRoutes={{ es: "/es", en: "/" }}
     formatIntlRoute={languageStrategy.formatIntlRoute}
     history={history}
     localeFromPath={languageStrategy.localeFromLocation}
@@ -23,41 +23,41 @@ const Base = ({children, history}) => (
   </I18nRoutingProvider>
 );
 
-test('It exposes locale as render prop', () => {
-  const Component = withI18nRouting(({i18nRouting}) => (
+test("It exposes locale as render prop", () => {
+  const Component = withI18nRouting(({ i18nRouting }) => (
     <span data-testid="locale">{i18nRouting.locale}</span>
   ));
-  const {getByTestId} = render(
-    <Base history={createHistory({initialEntries: ['/en']})}>
+  const { getByTestId } = render(
+    <Base history={createHistory({ initialEntries: ["/en"] })}>
       <Component />
-    </Base>,
+    </Base>
   );
 
-  expect(getByTestId('locale').textContent).toBe('en');
+  expect(getByTestId("locale").textContent).toBe("en");
 });
 
-test('It updates locale on history change', () => {
+test("It updates locale on history change", () => {
   const history = createHistory({
-    initialEntries: ['/en'],
+    initialEntries: ["/en"]
   });
 
-  const Component = withI18nRouting(({i18nRouting}) => (
+  const Component = withI18nRouting(({ i18nRouting }) => (
     <span data-testid="locale">{i18nRouting.locale}</span>
   ));
 
-  const {getByTestId, rerender} = render(
+  const { getByTestId, rerender } = render(
     <Base
       formatIntlRoute={languageStrategy.formatIntlRoute}
       history={history}
       localeFromPath={languageStrategy.localeFromLocation}
     >
       <Component />
-    </Base>,
+    </Base>
   );
 
-  expect(getByTestId('locale').textContent).toBe('en');
+  expect(getByTestId("locale").textContent).toBe("en");
 
-  history.push('/es');
+  history.push("/es");
 
   rerender(
     <I18nRoutingProvider
@@ -66,15 +66,15 @@ test('It updates locale on history change', () => {
       localeFromPath={languageStrategy.localeFromLocation}
     >
       <Component />
-    </I18nRoutingProvider>,
+    </I18nRoutingProvider>
   );
 
-  expect(getByTestId('locale').textContent).toBe('es');
+  expect(getByTestId("locale").textContent).toBe("es");
 });
 
-test('It sets translated routes', () => {
-  const Component = ({i18nRouting}) => {
-    i18nRouting.setTranslatedRoutes({es: '/es/ejemplo', en: '/example'});
+test("It sets translated routes", () => {
+  const Component = ({ i18nRouting }) => {
+    i18nRouting.setTranslatedRoutes({ es: "/es/ejemplo", en: "/example" });
 
     return Object.keys(i18nRouting.translatedRoutes).map(key => (
       <span data-testid={`link-${key}`} key={key}>
@@ -85,12 +85,12 @@ test('It sets translated routes', () => {
 
   const ComponentWithI18nRouting = withI18nRouting(Component);
 
-  const {getByTestId} = render(
-    <Base history={createHistory({initialEntries: ['/en']})}>
+  const { getByTestId } = render(
+    <Base history={createHistory({ initialEntries: ["/en"] })}>
       <ComponentWithI18nRouting />
-    </Base>,
+    </Base>
   );
 
-  expect(getByTestId('link-es').textContent).toBe('/es/ejemplo');
-  expect(getByTestId('link-en').textContent).toBe('/example');
+  expect(getByTestId("link-es").textContent).toBe("/es/ejemplo");
+  expect(getByTestId("link-en").textContent).toBe("/example");
 });

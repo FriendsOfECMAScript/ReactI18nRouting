@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import isEqual from "lodash.isequal";
 
-import I18nRoutingContext from './I18nRoutingContext';
+import I18nRoutingContext from "./I18nRoutingContext";
 
 class I18nRoutingProvider extends React.Component {
   constructor(props) {
@@ -13,10 +13,10 @@ class I18nRoutingProvider extends React.Component {
     this.state = {
       locale: props.localeFromPath({
         ...location,
-        hostname: typeof window !== 'undefined' ? window.location.hostname : '',
+        hostname: typeof window !== "undefined" ? window.location.hostname : ""
       }),
       translatedRoutes: props.defaultTranslatedRoutes || {},
-      setTranslatedRoutes: this.setTranslatedRoutes.bind(this),
+      setTranslatedRoutes: this.setTranslatedRoutes.bind(this)
     };
   }
 
@@ -42,25 +42,27 @@ class I18nRoutingProvider extends React.Component {
     if (isEqual(translatedRoutes, this.state.translatedRoutes)) {
       return;
     }
-    this.setState({translatedRoutes});
+    this.setState({ translatedRoutes });
   }
 
   handleLocationChange = location => {
-    const {localeFromPath} = this.props;
+    const { localeFromPath } = this.props;
 
     const locale = localeFromPath({
       ...location,
-      hostname: typeof window !== 'undefined' ? window.location.hostname : '',
+      hostname: typeof window !== "undefined" ? window.location.hostname : ""
     });
     this.setState({
       locale,
-      translatedRoutes: this.props.defaultTranslatedRoutes,
+      translatedRoutes: this.props.defaultTranslatedRoutes
     });
   };
 
   render() {
     return (
-      <I18nRoutingContext.Provider value={{formatIntlRoute: this.props.formatIntlRoute, ...this.state}}>
+      <I18nRoutingContext.Provider
+        value={{ formatIntlRoute: this.props.formatIntlRoute, ...this.state }}
+      >
         {this.props.children}
       </I18nRoutingContext.Provider>
     );
@@ -71,7 +73,7 @@ I18nRoutingProvider.propTypes = {
   defaultTranslatedRoutes: PropTypes.object,
   formatIntlRoute: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  localeFromPath: PropTypes.func.isRequired,
+  localeFromPath: PropTypes.func.isRequired
 };
 
 export default I18nRoutingProvider;

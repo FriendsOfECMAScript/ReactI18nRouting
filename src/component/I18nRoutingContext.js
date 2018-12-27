@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const I18nRoutingContext = React.createContext({
-  translatedRoutes: {},
+  translatedRoutes: {}
 });
 
 export default I18nRoutingContext;

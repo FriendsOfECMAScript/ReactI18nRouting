@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import I18nRoutingContext from './I18nRoutingContext';
+import I18nRoutingContext from "./I18nRoutingContext";
 
 export const withI18nRouting = Component => props => (
   <I18nRoutingContext.Consumer>

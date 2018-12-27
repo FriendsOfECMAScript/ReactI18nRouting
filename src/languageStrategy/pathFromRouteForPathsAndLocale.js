@@ -10,5 +10,5 @@
 export default (defaultLocale, pathFromRoute) => (
   paths,
   locale,
-  currentLocale,
+  currentLocale
 ) => pathFromRoute(paths, locale, defaultLocale, currentLocale);

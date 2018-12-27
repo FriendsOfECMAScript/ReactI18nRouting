@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  */
 
-import {formatRoute} from 'react-router-named-routes';
+import { formatRoute } from "react-router-named-routes";
 
-import {getLocale} from './../locale.js';
-import renderTranslatedRoutes from './../renderTranslatedRoutes.js';
-import pathFromRouteForPathsAndLocale from './pathFromRouteForPathsAndLocale.js';
+import { getLocale } from "./../locale.js";
+import renderTranslatedRoutes from "./../renderTranslatedRoutes.js";
+import pathFromRouteForPathsAndLocale from "./pathFromRouteForPathsAndLocale.js";
 
-const subdomainFromHostname = hostname => hostname.split('.')[0];
+const subdomainFromHostname = hostname => hostname.split(".")[0];
 
 const hostnameForLocale = (locale, subdomains, domain) =>
   `//${subdomains[locale]}.${domain}`;
@@ -32,13 +32,13 @@ const localeFromLocation = (subdomains, defaultLocale) => location => {
 const formatIntlRoute = (routes, subdomain, domain) => (
   routeName,
   params = {},
-  locale = getLocale(),
+  locale = getLocale()
 ) => {
   const prefix = params.absolute
     ? hostnameForLocale(locale, subdomain, domain)
-    : '';
+    : "";
 
-  if (typeof routes[routeName] === 'string') {
+  if (typeof routes[routeName] === "string") {
     return `${prefix}${formatRoute(routes[routeName], params)}`;
   }
 
@@ -50,19 +50,19 @@ const pathFromRoute = (paths, locale, defaultLocale, currentLocale) => {
     return null;
   }
 
-  if (typeof paths === 'string') {
+  if (typeof paths === "string") {
     return paths;
   }
 
   return paths[currentLocale];
 };
 
-export default ({routes, locales, defaultLocale, subdomains, domain}) => ({
+export default ({ routes, locales, defaultLocale, subdomains, domain }) => ({
   localeFromLocation: localeFromLocation(subdomains, defaultLocale),
   formatIntlRoute: formatIntlRoute(routes, subdomains, domain),
   renderRoutes: renderTranslatedRoutes(
     locales,
     routes,
-    pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute),
-  ),
+    pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute)
+  )
 });
