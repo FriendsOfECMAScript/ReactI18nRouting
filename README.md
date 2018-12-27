@@ -17,7 +17,7 @@
 
 There are robust solutions that they have become in standard solutions to usual problems in *React* ecosystem such as
 **routing** with *React-Router* and its all related packages.
-There are awesome libraries that they make our life more easy building apps but, what happens when we need to translate our routing system? In this case, we think that we need some other library over *React-Router* to join with any i18n
+These libraries make our life more easy building apps but, what happens when we need to translate our routing system? In this case, we think that we need some other library over *React-Router* to join with any i18n
 system so, we have created the ReactI18nRouting.
 
 This library aims to provide all the needed to make the internationalization of the routes as easy as possible.
