@@ -85,7 +85,6 @@ const languageStrategy = defaultUnprefixed({
   locales: ['eu', 'es', 'en', 'fr'],
   defaultLocale: 'es'
 });
-const renderRoutes = (locale, config) => languageStrategy.renderRoutes(locale)(config);
 const LocaleContext = withI18nRouting(({i18nRouting, children}) => children(i18nRouting.locale));
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
@@ -98,7 +97,7 @@ renderMethod(
     localeFromPath={languageStrategy.localeFromLocation}
   >
     <LocaleContext>
-      {locale => renderRoutes(locale, routes)}
+      {locale => languageStrategy.renderRoutes(locale)(routes)}
     </LocaleContext>
   </I18nRoutingProvider>,
   document.getElementById('root')
