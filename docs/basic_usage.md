@@ -80,8 +80,12 @@ import routes from './routing/config';
 
 const history = createHistory();
 
-const languageStrategy = defaultUnprefixed({routes: routes, locales: ['eu', 'es', 'en', 'fr'], defaultLocale: 'es'});
-const renderRoutes = (locale, config) => languageStrategy.renderRoutes(locale)(config),
+const languageStrategy = defaultUnprefixed({
+  routes: routes,
+  locales: ['eu', 'es', 'en', 'fr'],
+  defaultLocale: 'es'
+});
+const renderRoutes = (locale, config) => languageStrategy.renderRoutes(locale)(config);
 const LocaleContext = withI18nRouting(({i18nRouting, children}) => children(i18nRouting.locale));
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
