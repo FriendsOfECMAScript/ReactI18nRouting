@@ -11,9 +11,9 @@ import React from 'react';
 import {render} from 'react-testing-library';
 import createHistory from 'history/createMemoryHistory';
 
-import I18nRoutingProvider from '../../src/component/I18nRoutingProvider';
-import defaultUnprefixed from '../../src/languageStrategy/defaultUnprefixed';
-import withI18nRouting from '../../src/component/withI18nRouting';
+import I18nRoutingProvider from './../../src/component/I18nRoutingProvider';
+import defaultUnprefixed from './../../src/languageStrategy/defaultUnprefixed';
+import withI18nRouting from './../../src/component/withI18nRouting';
 
 const languageStrategy = defaultUnprefixed({
   routes: {
