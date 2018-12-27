@@ -7,10 +7,10 @@
  * file that was distributed with this source code.
  */
 
-import { getLocale, setLocale } from "./../src/locale.js";
+import {getLocale, setLocale} from './../src/locale.js';
 
-test("It can be mutable", () => {
+test('It can be mutable', () => {
   expect(getLocale()).toBe(null);
-  setLocale("es");
-  expect(getLocale()).toBe("es");
+  setLocale('es');
+  expect(getLocale()).toBe('es');
 });

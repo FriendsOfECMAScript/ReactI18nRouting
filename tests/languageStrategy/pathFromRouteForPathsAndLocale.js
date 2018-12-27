@@ -7,10 +7,8 @@
  * file that was distributed with this source code.
  */
 
-import pathFromRouteForPathsAndLocale from "./../../src/languageStrategy/pathFromRouteForPathsAndLocale.js";
+import pathFromRouteForPathsAndLocale from './../../src/languageStrategy/pathFromRouteForPathsAndLocale.js';
 
-test("It returns a function instance", () => {
-  expect(
-    pathFromRouteForPathsAndLocale("en", () => "/some-route")
-  ).toBeInstanceOf(Function);
+test('It returns a function instance', () => {
+  expect(pathFromRouteForPathsAndLocale('en', () => '/some-route')).toBeInstanceOf(Function);
 });

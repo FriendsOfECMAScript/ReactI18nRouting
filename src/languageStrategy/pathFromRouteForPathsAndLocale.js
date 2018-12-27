@@ -7,8 +7,5 @@
  * file that was distributed with this source code.
  */
 
-export default (defaultLocale, pathFromRoute) => (
-  paths,
-  locale,
-  currentLocale
-) => pathFromRoute(paths, locale, defaultLocale, currentLocale);
+export default (defaultLocale, pathFromRoute) => (paths, locale, currentLocale) =>
+  pathFromRoute(paths, locale, defaultLocale, currentLocale);
