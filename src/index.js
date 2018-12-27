@@ -9,7 +9,7 @@
 
 import {FormattedLink, FormattedNavLink, FormattedRedirect} from './component/FormattedReactRouter.js';
 import I18nRoutingProvider from './component/I18nRoutingProvider';
-import withI18nRouting from './component/withI18nRouting';
+import LocaleContext from './component/LocaleContext';
 import defaultUnPrefixed from './languageStrategy/defaultUnprefixed.js';
 import subdomainBased from './languageStrategy/subdomainBased.js';
 import renderTranslatedRoutes from './renderTranslatedRoutes.js';
@@ -19,7 +19,7 @@ export {
   FormattedNavLink,
   FormattedRedirect,
   I18nRoutingProvider,
-  withI18nRouting,
+  LocaleContext,
   defaultUnPrefixed,
   subdomainBased,
   renderTranslatedRoutes,
