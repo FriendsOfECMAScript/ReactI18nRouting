@@ -1,3 +1,12 @@
+/*
+ * This file is part of the ReactI18nRouting package.
+ *
+ * Copyright (c) 2018-present Friends Of ECMAScript
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 module.exports = {
   'root': true,
   'extends': 'eslint:recommended',
@@ -21,7 +30,7 @@ module.exports = {
       'templateStrings': true,
     },
   },
-  'plugins': ['react', 'class-property', 'babel'],
+  'plugins': ['react', 'class-property', 'babel', 'prettier'],
   'rules': {
     'arrow-body-style': 'off',
     'indent': ['error', 2, {'SwitchCase': 1}],
@@ -198,5 +207,6 @@ module.exports = {
     'react/sort-comp': 'off',
     'react/sort-prop-types': 'error',
     'react/wrap-multilines': 'off',
+    'prettier/prettier': 'error'
   },
 };

@@ -22,27 +22,16 @@ const localeFromLocation = (locales, defaultLocale) => location => {
   return defaultLocale;
 };
 
-const localePrefix = defaultLocale => locale =>
-  locale === defaultLocale ? '' : `/${locale}`;
+const localePrefix = defaultLocale => locale => (locale === defaultLocale ? '' : `/${locale}`);
 
-const formatIntlRoute = (routes, defaultLocale) => (
-  routeName,
-  params = {},
-  locale = getLocale(),
-) => {
+const formatIntlRoute = (routes, defaultLocale) => (routeName, params = {}, locale = getLocale()) => {
   locale = locale || defaultLocale;
 
   if (typeof routes[routeName] === 'string') {
-    return `${localePrefix(defaultLocale)(locale)}${formatRoute(
-      routes[routeName],
-      params,
-    )}`;
+    return `${localePrefix(defaultLocale)(locale)}${formatRoute(routes[routeName], params)}`;
   }
 
-  return `${localePrefix(defaultLocale)(locale)}${formatRoute(
-    routes[routeName][locale],
-    params,
-  )}`;
+  return `${localePrefix(defaultLocale)(locale)}${formatRoute(routes[routeName][locale], params)}`;
 };
 
 const pathFromRoute = (paths, locale, defaultLocale) => {
@@ -53,9 +42,7 @@ const pathFromRoute = (paths, locale, defaultLocale) => {
   const translatedPath = paths[locale];
 
   if (Array.isArray(translatedPath)) {
-    return translatedPath.map(
-      path => `${localePrefix(defaultLocale)(locale)}${path}`,
-    );
+    return translatedPath.map(path => `${localePrefix(defaultLocale)(locale)}${path}`);
   }
 
   return `${localePrefix(defaultLocale)(locale)}${paths[locale]}`;
@@ -64,9 +51,5 @@ const pathFromRoute = (paths, locale, defaultLocale) => {
 export default ({routes, locales, defaultLocale}) => ({
   localeFromLocation: localeFromLocation(locales, defaultLocale),
   formatIntlRoute: formatIntlRoute(routes, defaultLocale),
-  renderRoutes: renderTranslatedRoutes(
-    locales,
-    routes,
-    pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute),
-  ),
+  renderRoutes: renderTranslatedRoutes(locales, routes, pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute)),
 });

@@ -5,10 +5,7 @@ import {Router} from 'react-router-dom';
 
 import I18nRoutingProvider from '../../src/component/I18nRoutingProvider';
 import defaultUnprefixed from '../../src/languageStrategy/defaultUnprefixed';
-import {
-  FormattedLink,
-  FormattedNavLink,
-} from '../../src/component/FormattedReactRouter';
+import {FormattedLink, FormattedNavLink} from '../../src/component/FormattedReactRouter';
 
 const languageStrategy = defaultUnprefixed({
   routes: {

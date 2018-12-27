@@ -41,7 +41,7 @@
     "common-bundle": "node_modules/.bin/babel --copy-files --out-dir dist/common src",
     "esm-bundle": "cp -R src dist/esm",
     "cs": "npm run prettier && npm run eslint",
-    "prettier": "node_modules/.bin/prettier 'tests/**/*.js' 'src/**/*.js' --write --single-quote --no-bracket-spacing --trailing-comma all",
+    "prettier": "node_modules/.bin/prettier 'tests/**/*.js' 'src/**/*.js' --write",
     "eslint": "node_modules/.bin/eslint src tests"
   },
   "files": [
@@ -114,6 +114,7 @@
     "eslint": "^4.19.1",
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-class-property": "^1.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.9.1",
     "jest": "^23.1.0",
     "mkdirp": "^0.5.1",

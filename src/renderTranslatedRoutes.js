@@ -10,12 +10,7 @@
 import flatMap from 'lodash.flatmap';
 
 // eslint-disable-next-line max-params
-const getRouteConfig = (
-    configRoute,
-    locale,
-    currentLocale,
-    pathFromRouteForPathsAndLocale,
-  ) => {
+const getRouteConfig = (configRoute, locale, currentLocale, pathFromRouteForPathsAndLocale) => {
     const {paths, ...configRouteRest} = configRoute;
 
     return {
@@ -23,17 +18,8 @@ const getRouteConfig = (
       ...configRouteRest,
     };
   },
-  getRouteConfigForLocale = (
-    configRoute,
-    currentLocale,
-    pathFromRouteForPathsAndLocale,
-  ) => locale =>
-    getRouteConfig(
-      configRoute,
-      locale,
-      currentLocale,
-      pathFromRouteForPathsAndLocale,
-    );
+  getRouteConfigForLocale = (configRoute, currentLocale, pathFromRouteForPathsAndLocale) => locale =>
+    getRouteConfig(configRoute, locale, currentLocale, pathFromRouteForPathsAndLocale);
 
 // eslint-disable-next-line max-params
 const renderTranslatedRoutesForLocales = (
@@ -53,11 +39,10 @@ const renderTranslatedRoutesForLocales = (
         }
 
         // eslint-disable-next-line no-use-before-define
-        return renderTranslatedRoutes(
-          locales,
-          routes,
-          pathFromRouteForPathsAndLocale,
-        )(currentLocale)([routeConfig], locale);
+        return renderTranslatedRoutes(locales, routes, pathFromRouteForPathsAndLocale)(currentLocale)(
+          [routeConfig],
+          locale,
+        );
       }),
     ),
   // eslint-disable-next-line max-params
@@ -78,11 +63,10 @@ const renderTranslatedRoutesForLocales = (
     );
 
 // eslint-disable-next-line max-params
-const renderTranslatedRoutes = (
-  locales,
-  routes,
-  pathFromRouteForPathsAndLocale,
-) => currentLocale => (config, iterationLocale) =>
+const renderTranslatedRoutes = (locales, routes, pathFromRouteForPathsAndLocale) => currentLocale => (
+  config,
+  iterationLocale,
+) =>
   flatMap(
     config.map(configRoute => {
       const getRouteConfigForCurrentLocale = getRouteConfigForLocale(
@@ -113,11 +97,10 @@ const renderTranslatedRoutes = (
       }
 
       if (configRoute.routes) {
-        configRoute.routes = renderTranslatedRoutes(
-          locales,
-          routes,
-          pathFromRouteForPathsAndLocale,
-        )(currentLocale)(configRoute.routes, iterationLocale);
+        configRoute.routes = renderTranslatedRoutes(locales, routes, pathFromRouteForPathsAndLocale)(currentLocale)(
+          configRoute.routes,
+          iterationLocale,
+        );
       }
 
       return configRoute;

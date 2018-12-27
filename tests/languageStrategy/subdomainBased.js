@@ -25,15 +25,9 @@ const languageStrategy = subdomainBased({
 });
 
 test('It detects locale based in location', () => {
-  expect(
-    languageStrategy.localeFromLocation({hostname: 'english.localhost'}),
-  ).toBe('en');
-  expect(
-    languageStrategy.localeFromLocation({hostname: 'espanol.localhost'}),
-  ).toBe('es');
-  expect(
-    languageStrategy.localeFromLocation({hostname: 'euskera.localhost'}),
-  ).toBe('eu');
+  expect(languageStrategy.localeFromLocation({hostname: 'english.localhost'})).toBe('en');
+  expect(languageStrategy.localeFromLocation({hostname: 'espanol.localhost'})).toBe('es');
+  expect(languageStrategy.localeFromLocation({hostname: 'euskera.localhost'})).toBe('eu');
 });
 
 test('Generates valid react-router-config tree', () => {

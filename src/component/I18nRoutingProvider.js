@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEqual from "lodash.isequal";
+import isEqual from 'lodash.isequal';
 
 import I18nRoutingContext from './I18nRoutingContext';
 

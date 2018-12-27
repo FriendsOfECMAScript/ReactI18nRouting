@@ -19,18 +19,10 @@ const languageStrategy = defaultUnprefixed({
 });
 
 test('It detects locale based in location', () => {
-  expect(languageStrategy.localeFromLocation({pathname: '/some-route'})).toBe(
-    'en',
-  );
-  expect(
-    languageStrategy.localeFromLocation({pathname: '/es/some-route'}),
-  ).toBe('es');
-  expect(
-    languageStrategy.localeFromLocation({pathname: '/eu/some-route'}),
-  ).toBe('eu');
-  expect(
-    languageStrategy.localeFromLocation({pathname: '/estrategy-url'}),
-  ).toBe('en');
+  expect(languageStrategy.localeFromLocation({pathname: '/some-route'})).toBe('en');
+  expect(languageStrategy.localeFromLocation({pathname: '/es/some-route'})).toBe('es');
+  expect(languageStrategy.localeFromLocation({pathname: '/eu/some-route'})).toBe('eu');
+  expect(languageStrategy.localeFromLocation({pathname: '/estrategy-url'})).toBe('en');
 });
 
 test('Generates valid react-router-config tree', () => {

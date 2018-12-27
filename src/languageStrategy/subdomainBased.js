@@ -15,8 +15,7 @@ import pathFromRouteForPathsAndLocale from './pathFromRouteForPathsAndLocale.js'
 
 const subdomainFromHostname = hostname => hostname.split('.')[0];
 
-const hostnameForLocale = (locale, subdomains, domain) =>
-  `//${subdomains[locale]}.${domain}`;
+const hostnameForLocale = (locale, subdomains, domain) => `//${subdomains[locale]}.${domain}`;
 
 const localeFromLocation = (subdomains, defaultLocale) => location => {
   let currentLocale = defaultLocale;
@@ -29,14 +28,8 @@ const localeFromLocation = (subdomains, defaultLocale) => location => {
   return currentLocale;
 };
 
-const formatIntlRoute = (routes, subdomain, domain) => (
-  routeName,
-  params = {},
-  locale = getLocale(),
-) => {
-  const prefix = params.absolute
-    ? hostnameForLocale(locale, subdomain, domain)
-    : '';
+const formatIntlRoute = (routes, subdomain, domain) => (routeName, params = {}, locale = getLocale()) => {
+  const prefix = params.absolute ? hostnameForLocale(locale, subdomain, domain) : '';
 
   if (typeof routes[routeName] === 'string') {
     return `${prefix}${formatRoute(routes[routeName], params)}`;
@@ -60,9 +53,5 @@ const pathFromRoute = (paths, locale, defaultLocale, currentLocale) => {
 export default ({routes, locales, defaultLocale, subdomains, domain}) => ({
   localeFromLocation: localeFromLocation(subdomains, defaultLocale),
   formatIntlRoute: formatIntlRoute(routes, subdomains, domain),
-  renderRoutes: renderTranslatedRoutes(
-    locales,
-    routes,
-    pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute),
-  ),
+  renderRoutes: renderTranslatedRoutes(locales, routes, pathFromRouteForPathsAndLocale(defaultLocale, pathFromRoute)),
 });

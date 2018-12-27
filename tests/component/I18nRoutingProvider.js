@@ -24,9 +24,7 @@ const Base = ({children, history}) => (
 );
 
 test('It exposes locale as render prop', () => {
-  const Component = withI18nRouting(({i18nRouting}) => (
-    <span data-testid="locale">{i18nRouting.locale}</span>
-  ));
+  const Component = withI18nRouting(({i18nRouting}) => <span data-testid="locale">{i18nRouting.locale}</span>);
   const {getByTestId} = render(
     <Base history={createHistory({initialEntries: ['/en']})}>
       <Component />
@@ -41,9 +39,7 @@ test('It updates locale on history change', () => {
     initialEntries: ['/en'],
   });
 
-  const Component = withI18nRouting(({i18nRouting}) => (
-    <span data-testid="locale">{i18nRouting.locale}</span>
-  ));
+  const Component = withI18nRouting(({i18nRouting}) => <span data-testid="locale">{i18nRouting.locale}</span>);
 
   const {getByTestId, rerender} = render(
     <Base
