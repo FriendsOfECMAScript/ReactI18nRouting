@@ -8,9 +8,11 @@ To get the diff between two versions, go to https://github.com/FriendsOfECMAScri
 - 0.8.0
   - React new Context API is now used to manage state  
   - Decoupled from `react-intl` and `react-redux`
-  - Added React component testing using `react-testing-library`
   - [BC BREAK] Removed bridges for redux, browser, in-memory and local storage.
   - [BC BREAK] Removed support for React and ReactDOM < 16.3 (Context API is not supported in those versions)
+  - Added React component testing using `react-testing-library`
+  - Increased the test code coverage
+  - Upgraded all dependencies removing alpha and beta versions
 - 0.7.0
   - Added support for using an string-array as the path property as `react-router` does.
 - 0.6.0

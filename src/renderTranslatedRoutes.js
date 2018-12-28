@@ -9,7 +9,6 @@
 
 import flatMap from 'lodash.flatmap';
 
-// eslint-disable-next-line max-params
 const getRouteConfig = (configRoute, locale, currentLocale, pathFromRouteForPathsAndLocale) => {
     const {paths, ...configRouteRest} = configRoute;
 
@@ -21,9 +20,7 @@ const getRouteConfig = (configRoute, locale, currentLocale, pathFromRouteForPath
   getRouteConfigForLocale = (configRoute, currentLocale, pathFromRouteForPathsAndLocale) => locale =>
     getRouteConfig(configRoute, locale, currentLocale, pathFromRouteForPathsAndLocale);
 
-// eslint-disable-next-line max-params
 const renderTranslatedRoutesForLocales = (
-    configRoute,
     routes,
     locales,
     currentLocale,
@@ -45,16 +42,13 @@ const renderTranslatedRoutesForLocales = (
         );
       }),
     ),
-  // eslint-disable-next-line max-params
   renderTranslatedRoutesForConfig = (
-    configRoute,
     routes,
     currentLocale,
     pathFromRouteForPathsAndLocale,
     getRouteConfigForCurrentLocale,
   ) => locales =>
     renderTranslatedRoutesForLocales(
-      configRoute,
       routes,
       locales,
       currentLocale,
@@ -62,7 +56,6 @@ const renderTranslatedRoutesForLocales = (
       getRouteConfigForCurrentLocale,
     );
 
-// eslint-disable-next-line max-params
 const renderTranslatedRoutes = (locales, routes, pathFromRouteForPathsAndLocale) => currentLocale => (
   config,
   iterationLocale,
@@ -75,7 +68,6 @@ const renderTranslatedRoutes = (locales, routes, pathFromRouteForPathsAndLocale)
           pathFromRouteForPathsAndLocale,
         ),
         renderTranslatedRoutesForCurrentConfig = renderTranslatedRoutesForConfig(
-          configRoute,
           routes,
           currentLocale,
           pathFromRouteForPathsAndLocale,
