@@ -85,11 +85,6 @@ const languageStrategy = defaultUnprefixed({
   locales: ['eu', 'es', 'en', 'fr'],
   defaultLocale: 'es'
 });
-<<<<<<< HEAD
-const LocaleContext = withI18nRouting(({i18nRouting, children}) => children(i18nRouting.locale));
-=======
-const renderRoutes = (locale, config) => languageStrategy.renderRoutes(locale)(config);
->>>>>>> Moved withI18nRouting to private api and provided LocaleContext component out-of-the-box
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
 
