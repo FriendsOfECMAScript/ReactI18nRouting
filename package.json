@@ -2,12 +2,13 @@
   "name": "@foes/react-i18n-routing",
   "version": "0.8.0",
   "license": "MIT",
-  "description": "Provides components and functions to make i18n routing React apps with ease.",
+  "description": "Abstraction layer over React-Router to create i18n routes easily",
   "keywords": [
-    "i18n",
     "react",
+    "reactjs",
+    "i18n",
     "react-router",
-    "react-intl",
+    "internationalization",
     "routing"
   ],
   "authors": [
