@@ -73,7 +73,7 @@ The following file is the entry point of your React app.
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {I18nRoutingProvider} from '@foes/react-i18n-routing';
+import {I18nRoutingProvider, LocaleContext} from '@foes/react-i18n-routing';
 import createHistory from 'history/createBrowserHistory';
 
 import routes from './routing/config';
@@ -85,7 +85,6 @@ const languageStrategy = defaultUnprefixed({
   locales: ['eu', 'es', 'en', 'fr'],
   defaultLocale: 'es'
 });
-const LocaleContext = withI18nRouting(({i18nRouting, children}) => children(i18nRouting.locale));
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
 
@@ -97,7 +96,7 @@ renderMethod(
     localeFromPath={languageStrategy.localeFromLocation}
   >
     <LocaleContext>
-      {locale => languageStrategy.renderRoutes(locale)(routes)}
+      {({locale}) => languageStrategy.renderRoutes(locale)(routes)}
     </LocaleContext>
   </I18nRoutingProvider>,
   document.getElementById('root')

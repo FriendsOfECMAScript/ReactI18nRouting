@@ -7,10 +7,6 @@
  * file that was distributed with this source code.
  */
 
-import React from 'react';
+import withI18nRouting from './withI18nRouting';
 
-import I18nRoutingContext from './I18nRoutingContext';
-
-export default Component => props => (
-  <I18nRoutingContext.Consumer>{context => <Component i18nRouting={context} {...props} />}</I18nRoutingContext.Consumer>
-);
+export default withI18nRouting(({i18nRouting, children}) => children(i18nRouting));
