@@ -18,4 +18,6 @@ import {FormattedLink, FormattedNavLink, FormattedRedirect} from '@foes/react-i1
 <FormattedRedirect name="route_name" params={{param1: 'value'}}/>
 ```
 
+- [Back to the first chapter](basic_usage.md) if you want to configure this library in your React app.
+- In order to need more info about language strategies check [this guide](language_strategies.md).
 - Back to the [index](index.md).

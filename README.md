@@ -1,5 +1,5 @@
 # ReactI18nRouting
-> 🌐 Abstraction layer over react-router to create i18n routes easily
+> 🌐 Abstraction layer over React-Router to create i18n routes easily
 
 [![npm version](https://img.shields.io/npm/v/@foes/react-i18n-routing.svg?style=flat-square)](https://www.npmjs.com/package/@foes/react-i18n-routing)
 [![Build Status](http://img.shields.io/travis/FriendsOfECMAScript/ReactI18nRouting/master.svg?style=flat-square)](https://travis-ci.org/FriendsOfECMAScript/ReactI18nRouting)
@@ -17,11 +17,11 @@
 
 There are robust solutions that they have become in standard solutions to usual problems in *React* ecosystem such as
 **routing** with *React-Router* and its all related packages.
-These libraries make our life more easy building apps but, what happens when we need to translate our routing system? In this case, we think that we need some other library over *React-Router* to join with any i18n
-system so, we have created the ReactI18nRouting.
+These libraries make our life more easy building apps but, what happens when we need to translate our routing system? In this case, we think that we need some other library over *React-Router* to join with any **i18n**
+system so, we have created the *ReactI18nRouting*.
 
 This library aims to provide all the needed to make the internationalization of the routes as easy as possible.
-We truly trust in the **Single Responsibility Pattern** so, we have designed the library following the UNIX popular
+We truly trust in the *Single Responsibility Pattern* so, we have designed the library following the UNIX popular
 concept:<br>*DOTADIW, or "Do One Thing and Do It Well"*.
 
 ## 📟 Install
@@ -51,7 +51,8 @@ $ yarn cs           # or npm run cs
 ```
 There is also a policy for contributing to this library. Pull requests must be explained step by step to make the
 review process easy in order to accept and merge them. New methods or code improvements must come paired with
-tests. We are using [Jest][4] test framework for that purpose.
+tests. We are using [Jest][4] test framework for that purpose; and over that, to make our life easier, we are using
+[React Testing Library][5].
 ```bash
 $ yarn test         # or npm test
 ```
@@ -72,3 +73,4 @@ This library is created and maintained by:
 [2]: http://eslint.org/
 [3]: https://prettier.io/ 
 [4]: https://facebook.github.io/jest/
+[5]: https://github.com/kentcdodds/react-testing-library

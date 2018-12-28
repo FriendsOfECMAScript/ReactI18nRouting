@@ -11,7 +11,6 @@ First of all, we have to define our routes with their translations:
 export const HOME = 'home';
 export const PAGE = 'page';
 export const POST = 'post';
-export const ARRAY_PATH_ROUTE = 'array-path-route';
 
 export default {
   [HOME]: '/',
@@ -26,12 +25,6 @@ export default {
     es: '/pagina/**',
     eu: '/orrialdea/**',
     fr: '/page/**',
-  },
-  [ARRAY_PATH_ROUTE]: {
-    en: ['/page', '/news'],
-    es: ['/pagina', '/noticia'],
-    eu: ['/orrialdea', '/albistea'],
-    fr: ['/page', '/nouvelles'],
   },
 };
 ```
@@ -79,14 +72,13 @@ import createHistory from 'history/createBrowserHistory';
 import routes from './routing/config';
 
 const history = createHistory();
+const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
 
 const languageStrategy = defaultUnprefixed({
   routes: routes,
   locales: ['eu', 'es', 'en', 'fr'],
   defaultLocale: 'es'
 });
-
-const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
 
 renderMethod(
   <I18nRoutingProvider
@@ -104,4 +96,5 @@ renderMethod(
 ```
 
 - In order to need more info about language strategies check [this guide](language_strategies.md).
+- If you want to learn how to create React-Router link components with translation capabilities check [this guide](react_router_components.md).
 - Back to the [index](index.md).

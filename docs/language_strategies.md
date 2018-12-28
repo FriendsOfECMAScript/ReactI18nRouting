@@ -18,6 +18,7 @@ Prefixes all paths with locales but the locale set as default.
 
 ```javascript
 import {defaultUnprefixed} from '@foes/react-i18n-routing';
+import routes from './routing/config';
 
 const locales = ['eu', 'es', 'en', 'fr'];
 const defaultLocale = 'eu';
@@ -30,6 +31,7 @@ Based on domain resolves current locale.
 
 ```javascript
 import {subdomainBased} from '@foes/react-i18n-routing';
+import routes from './routing/config';
 
 const locales = ['eu', 'es', 'en', 'fr'];
 const defaultLocale = 'eu';
@@ -48,6 +50,8 @@ const languageStrategy = subdomainBased({
 });
 ```
 
+- [Back to the first chapter](basic_usage.md) if you want to configure this library in your React app.
+- If you want to learn how to create React-Router link components with translation capabilities check [this guide](react_router_components.md).
 - Back to the [index](index.md).
 
 [1]: https://developer.mozilla.org/en-US/docs/Web/API/Location 
