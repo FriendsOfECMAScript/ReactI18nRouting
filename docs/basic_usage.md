@@ -96,7 +96,7 @@ renderMethod(
     localeFromPath={languageStrategy.localeFromLocation}
   >
     <LocaleContext>
-      {locale => languageStrategy.renderRoutes(locale)(routes)}
+      {({locale}) => languageStrategy.renderRoutes(locale)(routes)}
     </LocaleContext>
   </I18nRoutingProvider>,
   document.getElementById('root')
