@@ -20,7 +20,9 @@ const getRouteConfig = (configRoute, locale, currentLocale, pathFromRouteForPath
   getRouteConfigForLocale = (configRoute, currentLocale, pathFromRouteForPathsAndLocale) => locale =>
     getRouteConfig(configRoute, locale, currentLocale, pathFromRouteForPathsAndLocale);
 
+/* eslint-disable max-params */
 const renderTranslatedRoutesForLocales = (
+    configRoute,
     routes,
     locales,
     currentLocale,
@@ -43,18 +45,21 @@ const renderTranslatedRoutesForLocales = (
       }),
     ),
   renderTranslatedRoutesForConfig = (
+    configRoute,
     routes,
     currentLocale,
     pathFromRouteForPathsAndLocale,
     getRouteConfigForCurrentLocale,
   ) => locales =>
     renderTranslatedRoutesForLocales(
+      configRoute,
       routes,
       locales,
       currentLocale,
       pathFromRouteForPathsAndLocale,
       getRouteConfigForCurrentLocale,
     );
+/* eslint-enable max-params */
 
 const renderTranslatedRoutes = (locales, routes, pathFromRouteForPathsAndLocale) => currentLocale => (
   config,
@@ -68,6 +73,7 @@ const renderTranslatedRoutes = (locales, routes, pathFromRouteForPathsAndLocale)
           pathFromRouteForPathsAndLocale,
         ),
         renderTranslatedRoutesForCurrentConfig = renderTranslatedRoutesForConfig(
+          configRoute,
           routes,
           currentLocale,
           pathFromRouteForPathsAndLocale,

@@ -3,16 +3,17 @@
 This changelog references the relevant changes done between versions.
 
 To get the diff for a specific change, go to https://github.com/FriendsOfECMAScript/ReactI18nRouting/commit/XXX where XXX is the change hash
-To get the diff between two versions, go to https://github.com/FriendsOfECMAScript/ReactI18nRouting/compare/v0.4.0...v0.5.0
+To get the diff between two versions, go to https://github.com/FriendsOfECMAScript/ReactI18nRouting/compare/v0.7.0...v0.8.0
 
+- 0.9.0 (future release)
+  - Upgraded all dependencies removing alpha and beta versions.
 - 0.8.0
-  - React new Context API is now used to manage state  
-  - Decoupled from `react-intl` and `react-redux`
+  - React new Context API is now used to manage state.
+  - Decoupled from `react-intl` and `react-redux`.
   - [BC BREAK] Removed bridges for redux, browser, in-memory and local storage.
-  - [BC BREAK] Removed support for React and ReactDOM < 16.3 (Context API is not supported in those versions)
-  - Added React component testing using `react-testing-library`
-  - Increased the test code coverage
-  - Upgraded all dependencies removing alpha and beta versions
+  - [BC BREAK] Removed support for React and ReactDOM < 16.3 (Context API is not supported in those versions).
+  - Added React component testing using `react-testing-library`.
+  - Increased test code coverage.
 - 0.7.0
   - Added support for using an string-array as the path property as `react-router` does.
 - 0.6.0
