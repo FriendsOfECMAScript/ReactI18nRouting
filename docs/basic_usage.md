@@ -66,7 +66,7 @@ The following file is the entry point of your React app.
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {I18nRoutingProvider, LocaleContext} from '@foes/react-i18n-routing';
+import {defaultUnprefixed, I18nRoutingProvider, LocaleContext} from '@foes/react-i18n-routing';
 import createHistory from 'history/createBrowserHistory';
 
 import routes from './routing/config';
