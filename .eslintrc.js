@@ -30,6 +30,12 @@ module.exports = {
       'templateStrings': true,
     },
   },
+  "settings": {
+    "react": {
+      "version": "16.3",
+    },
+    "propWrapperFunctions": ["forbidExtraProps"]
+  },
   'plugins': ['react', 'class-property', 'babel', 'prettier'],
   'rules': {
     'arrow-body-style': 'off',
@@ -58,7 +64,7 @@ module.exports = {
     'max-depth': ['warn', 4],
     'max-len': ['error', 120],
     'max-nested-callbacks': ['warn', 2],
-    'max-params': ['warn', 4],
+    'max-params': ['warn', 5],
     'max-statements': ['off', 10],
     'new-cap': 'error',
     'new-parens': 'error',
