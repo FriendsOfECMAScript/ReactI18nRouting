@@ -122,7 +122,7 @@
     "npm-install-peers": "^1.2.1",
     "prettier": "^1.10.2",
     "react-testing-library": "^5.3.2",
-    "regenerator-runtime": "^0.11.1",
+    "regenerator-runtime": "^0.13.3",
     "rimraf": "^2.6.2"
   },
   "peerDependencies": {
